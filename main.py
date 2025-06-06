@@ -5,7 +5,7 @@
 
 
 def print_hi(name):
-    # Use a breakpoint in the code line below to debug dyour scripttt.
+    # Use a breakpoint in the code line below to debug dyour dscripttt.
     print(f'Hi, {name}')  # Press Ctdrl+F8 to toggle the breakpoint.
 
 
