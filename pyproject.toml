@@ -1,15 +1,13 @@
-[project]
+[tool.poetry]
 name = "diplomskanaloga"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "PajovicVanja",email = "vanja.pajovic@student.um.si"}
-]
+authors = ["JakovlevskaIsidora <isidora.jakovlevska@student.um.si>"]
+package-mode = false
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-]
 
+[tool.poetry.dependencies]
+python = ">=3.11"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
