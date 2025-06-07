@@ -1,13 +1,21 @@
 [tool.poetry]
-name = "diplomskanaloga"
+name = "av-perception"
 version = "0.1.0"
 description = ""
 authors = ["JakovlevskaIsidora <isidora.jakovlevska@student.um.si>"]
-package-mode = false
 readme = "README.md"
+
+# Tell Poetry to include your top-level package folder
+packages = [
+  { include = "yolo_pipeline" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.11"
+pyyaml = "^6.0.2"
+numpy = "^2.3.0"
+pillow = "^11.2.1"
+pytest = "^8.4.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

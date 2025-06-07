@@ -1,0 +1,11 @@
+# datasets/config.yaml
+
+kitti:
+  root: "."                # points at datasets/ itself
+  splits:
+    train:
+      images: "data_object_image_2/training"
+      lidar:  "data_object_velodyne/training"
+    test:
+      images: "data_object_image_2/testing"
+      lidar:  "data_object_velodyne/testing"
