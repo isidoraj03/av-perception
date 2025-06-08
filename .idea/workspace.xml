@@ -4,22 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="test from another laptop">
-      <change afterPath="$PROJECT_DIR$/datasets/config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_data_streamer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yolo_pipeline/io/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yolo_pipeline/io/data_streamer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Dataset integration: add KITTI DataStreamer with image &amp; LiDAR playback&#10;&#10;- Add datasets/config.yaml to list paths &amp; splits&#10;- Implement DataStreamer:&#10;  • load_split(&quot;kitti&quot;, split=&quot;train&quot;, shuffle=False)&#10;  • start()/stop() with background thread&#10;  • get_latest_camera_frame() &amp; get_latest_pointcloud()&#10;- Add KITTI PNG → NumPy image loader and .bin → np.float32 (N×4) LiDAR loader&#10;- Smoke‐test in scripts/main.py: 3 s playback at ~10 Hz, verified 30 frames each">
+      <change afterPath="$PROJECT_DIR$/tests/test_detector.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yolo_pipeline/perception/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yolo_pipeline/perception/detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,24 +54,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.copy.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/aaFERI/Iskic/av-perception/yolo_pipeline/io",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.copy.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/aaFERI/Iskic/av-perception/yolo_pipeline/io&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\aaFERI\Iskic\av-perception\yolo_pipeline\io" />
@@ -79,7 +80,7 @@
       <recent name="C:\aaFERI\Iskic\av-perception\scripts" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.copy">
     <configuration name="copy" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DiplomskaNaloga" />
       <option name="ENV_FILES" value="" />
@@ -155,7 +156,8 @@
       <workItem from="1749227344642" duration="18000" />
       <workItem from="1749227363982" duration="33000" />
       <workItem from="1749227403144" duration="6267000" />
-      <workItem from="1749307691153" duration="3808000" />
+      <workItem from="1749307691153" duration="5393000" />
+      <workItem from="1749382997036" duration="977000" />
     </task>
     <task id="LOCAL-00001" summary="inital commit">
       <option name="closed" value="true" />
@@ -245,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749227715109</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Dataset integration: add KITTI DataStreamer with image &amp; LiDAR playback&#10;&#10;- Add datasets/config.yaml to list paths &amp; splits&#10;- Implement DataStreamer:&#10;  • load_split(&quot;kitti&quot;, split=&quot;train&quot;, shuffle=False)&#10;  • start()/stop() with background thread&#10;  • get_latest_camera_frame() &amp; get_latest_pointcloud()&#10;- Add KITTI PNG → NumPy image loader and .bin → np.float32 (N×4) LiDAR loader&#10;- Smoke‐test in scripts/main.py: 3 s playback at ~10 Hz, verified 30 frames each">
+      <option name="closed" value="true" />
+      <created>1749311728049</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1749311728049</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,10 +276,11 @@
     <MESSAGE value="inital commit" />
     <MESSAGE value="Initial project setup: Poetry, Git, folder structure, Dockerfile, setup script" />
     <MESSAGE value="test from another laptop" />
-    <option name="LAST_COMMIT_MESSAGE" value="test from another laptop" />
+    <MESSAGE value="Dataset integration: add KITTI DataStreamer with image &amp; LiDAR playback&#10;&#10;- Add datasets/config.yaml to list paths &amp; splits&#10;- Implement DataStreamer:&#10;  • load_split(&quot;kitti&quot;, split=&quot;train&quot;, shuffle=False)&#10;  • start()/stop() with background thread&#10;  • get_latest_camera_frame() &amp; get_latest_pointcloud()&#10;- Add KITTI PNG → NumPy image loader and .bin → np.float32 (N×4) LiDAR loader&#10;- Smoke‐test in scripts/main.py: 3 s playback at ~10 Hz, verified 30 frames each" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dataset integration: add KITTI DataStreamer with image &amp; LiDAR playback&#10;&#10;- Add datasets/config.yaml to list paths &amp; splits&#10;- Implement DataStreamer:&#10;  • load_split(&quot;kitti&quot;, split=&quot;train&quot;, shuffle=False)&#10;  • start()/stop() with background thread&#10;  • get_latest_camera_frame() &amp; get_latest_pointcloud()&#10;- Add KITTI PNG → NumPy image loader and .bin → np.float32 (N×4) LiDAR loader&#10;- Smoke‐test in scripts/main.py: 3 s playback at ~10 Hz, verified 30 frames each" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749311276812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749383025938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiplomskaNaloga$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749218945109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/av_perception$main.coverage" NAME="main Coverage Results" MODIFIED="1749311453078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
