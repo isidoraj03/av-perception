@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Dataset integration: add KITTI DataStreamer with image &amp; LiDAR playback&#10;&#10;- Add datasets/config.yaml to list paths &amp; splits&#10;- Implement DataStreamer:&#10;  • load_split(&quot;kitti&quot;, split=&quot;train&quot;, shuffle=False)&#10;  • start()/stop() with background thread&#10;  • get_latest_camera_frame() &amp; get_latest_pointcloud()&#10;- Add KITTI PNG → NumPy image loader and .bin → np.float32 (N×4) LiDAR loader&#10;- Smoke‐test in scripts/main.py: 3 s playback at ~10 Hz, verified 30 frames each">
-      <change afterPath="$PROJECT_DIR$/tests/test_detector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yolo_pipeline/perception/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yolo_pipeline/perception/detector.py" afterDir="false" />
+    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Stub Detector class for YOLO inference&#10;&#10;- add yolo_pipeline/perception/detector.py with Detector skeleton (load_model, predict)&#10;- implement load_model() and predict() placeholders&#10;- add tests in tests/test_detector.py for init, load_model no-op, and predict error/return">
+      <change afterPath="$PROJECT_DIR$/tests/test_detector_inference.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_detector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yolo_pipeline/perception/detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/yolo_pipeline/perception/detector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +157,7 @@
       <workItem from="1749227363982" duration="33000" />
       <workItem from="1749227403144" duration="6267000" />
       <workItem from="1749307691153" duration="5393000" />
-      <workItem from="1749382997036" duration="977000" />
+      <workItem from="1749382997036" duration="1673000" />
     </task>
     <task id="LOCAL-00001" summary="inital commit">
       <option name="closed" value="true" />
@@ -255,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749311728049</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Stub Detector class for YOLO inference&#10;&#10;- add yolo_pipeline/perception/detector.py with Detector skeleton (load_model, predict)&#10;- implement load_model() and predict() placeholders&#10;- add tests in tests/test_detector.py for init, load_model no-op, and predict error/return">
+      <option name="closed" value="true" />
+      <created>1749384325476</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1749384325476</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,10 +285,11 @@
     <MESSAGE value="Initial project setup: Poetry, Git, folder structure, Dockerfile, setup script" />
     <MESSAGE value="test from another laptop" />
     <MESSAGE value="Dataset integration: add KITTI DataStreamer with image &amp; LiDAR playback&#10;&#10;- Add datasets/config.yaml to list paths &amp; splits&#10;- Implement DataStreamer:&#10;  • load_split(&quot;kitti&quot;, split=&quot;train&quot;, shuffle=False)&#10;  • start()/stop() with background thread&#10;  • get_latest_camera_frame() &amp; get_latest_pointcloud()&#10;- Add KITTI PNG → NumPy image loader and .bin → np.float32 (N×4) LiDAR loader&#10;- Smoke‐test in scripts/main.py: 3 s playback at ~10 Hz, verified 30 frames each" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dataset integration: add KITTI DataStreamer with image &amp; LiDAR playback&#10;&#10;- Add datasets/config.yaml to list paths &amp; splits&#10;- Implement DataStreamer:&#10;  • load_split(&quot;kitti&quot;, split=&quot;train&quot;, shuffle=False)&#10;  • start()/stop() with background thread&#10;  • get_latest_camera_frame() &amp; get_latest_pointcloud()&#10;- Add KITTI PNG → NumPy image loader and .bin → np.float32 (N×4) LiDAR loader&#10;- Smoke‐test in scripts/main.py: 3 s playback at ~10 Hz, verified 30 frames each" />
+    <MESSAGE value="Stub Detector class for YOLO inference&#10;&#10;- add yolo_pipeline/perception/detector.py with Detector skeleton (load_model, predict)&#10;- implement load_model() and predict() placeholders&#10;- add tests in tests/test_detector.py for init, load_model no-op, and predict error/return" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stub Detector class for YOLO inference&#10;&#10;- add yolo_pipeline/perception/detector.py with Detector skeleton (load_model, predict)&#10;- implement load_model() and predict() placeholders&#10;- add tests in tests/test_detector.py for init, load_model no-op, and predict error/return" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749383025938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749384615886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiplomskaNaloga$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749218945109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/av_perception$main.coverage" NAME="main Coverage Results" MODIFIED="1749311453078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
