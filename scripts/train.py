@@ -3,7 +3,11 @@
 
 import argparse
 import os
-from ultralytics import YOLO
+
+import mlflow
+import mlflow.pytorch
+from ultralytics import YOLO, settings  # import settings to modify Ultralytics config
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Train a YOLO model on your dataset")
@@ -33,34 +37,58 @@ def parse_args():
     )
     return parser.parse_args()
 
+
 def main():
     args = parse_args()
 
-    # 1. Load model
-    print(f"Loading model from {args.model} on device default...")
-    model = YOLO(args.model)
+    # 0. MLflow setup
+    mlflow.set_experiment("yolo_training")
+    mlflow.pytorch.autolog()               # our autolog hooks
 
-    # 2. Train
-    print(f"Starting training:\n"
-          f"  data={args.data}\n"
-          f"  epochs={args.epochs}\n"
-          f"  batch_size={args.batch_size}\n"
-          f"  img_size={args.img_size}\n"
-          f"  output_dir={args.output_dir}")
-    model.train(
-        data=args.data,
-        epochs=args.epochs,
-        batch=args.batch_size,
-        imgsz=args.img_size,
-        project=args.output_dir,
-        exist_ok=True  # overwrite if rerunning
-    )
+    # Disable Ultralytics’ own MLflow callback (via settings update) :contentReference[oaicite:0]{index=0}
+    settings.update(mlflow=False)
 
-    # 3. Save best checkpoint (Ultralytics auto-saves best.pt under project/name/weights/)
-    #    We assume default run name "exp" or "expN"; for more control you can add --name flag.
-    default_run = os.path.join(args.output_dir, os.listdir(args.output_dir)[-1])
-    best_ckpt = os.path.join(default_run, "weights", "best.pt")
-    print(f"\n✅ Training complete. Best checkpoint at:\n    {best_ckpt}")
+    with mlflow.start_run() as run:
+        # 1. Log hyperparameters manually
+        mlflow.log_params({
+            "model": args.model,
+            "data": args.data,
+            "epochs": args.epochs,
+            "batch_size": args.batch_size,
+            "img_size": args.img_size,
+            "output_dir": args.output_dir,
+        })
+
+        # 2. Load model
+        print(f"Loading model from {args.model}…")
+        model = YOLO(args.model)
+
+        # 3. Train
+        print("Starting training:")
+        print(
+            f"  data={args.data}\n"
+            f"  epochs={args.epochs}\n"
+            f"  batch_size={args.batch_size}\n"
+            f"  img_size={args.img_size}\n"
+            f"  output_dir={args.output_dir}"
+        )
+        model.train(
+            data=args.data,
+            epochs=args.epochs,
+            batch=args.batch_size,
+            imgsz=args.img_size,
+            project=args.output_dir,
+            exist_ok=True
+        )
+
+        # 4. Locate and log the best checkpoint
+        last_run = sorted(os.listdir(args.output_dir))[-1]
+        best_ckpt = os.path.join(args.output_dir, last_run, "weights", "best.pt")
+        print(f"\n✅ Training complete. Best checkpoint at:\n    {best_ckpt}")
+        mlflow.log_artifact(best_ckpt, artifact_path="checkpoints")
+
+        print(f"MLflow run completed: run_id={run.info.run_id}")
+
 
 if __name__ == "__main__":
     main()

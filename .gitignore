@@ -1,4 +1,4 @@
-/copy.py
+/copy_script.py
 /output.txt
 /buildDocker.txt
 /install-poetry.py
@@ -10,3 +10,4 @@ isidora.jakovlevska@st:;;;;udent.um.si
 /yolov8n.pt
 /datasets/coco128/
 /runs/
+/mlruns/
