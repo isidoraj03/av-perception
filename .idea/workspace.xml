@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Verified training loop works on 50-image KITTI subset (5 epochs)">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Ability to switch between different YOLO v8 models">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/train.py" afterDir="false" />
     </list>
@@ -196,7 +195,7 @@
       <workItem from="1749307691153" duration="5393000" />
       <workItem from="1749382997036" duration="2418000" />
       <workItem from="1749490508005" duration="1689000" />
-      <workItem from="1750000175644" duration="9469000" />
+      <workItem from="1750000175644" duration="10342000" />
     </task>
     <task id="LOCAL-00001" summary="inital commit">
       <option name="closed" value="true" />
@@ -334,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750004867772</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Ability to switch between different YOLO v8 models">
+      <option name="closed" value="true" />
+      <created>1750010347553</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1750010347553</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,11 +368,12 @@
     <MESSAGE value="Scaffolded train.py with argument parsing and high‐level outline." />
     <MESSAGE value="Added MLflow integration for experiment tracking" />
     <MESSAGE value="Verified training loop works on 50-image KITTI subset (5 epochs)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Verified training loop works on 50-image KITTI subset (5 epochs)" />
+    <MESSAGE value="Ability to switch between different YOLO v8 models" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ability to switch between different YOLO v8 models" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/av_perception$create_kitti_subset.coverage" NAME="create_kitti_subset Coverage Results" MODIFIED="1750004614486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy_script Coverage Results" MODIFIED="1750008328464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy_script Coverage Results" MODIFIED="1750010846876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiplomskaNaloga$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749218945109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/av_perception$main.coverage" NAME="main Coverage Results" MODIFIED="1749311453078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
