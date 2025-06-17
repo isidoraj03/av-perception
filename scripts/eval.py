@@ -6,6 +6,7 @@ import os
 import time
 import yaml
 import glob
+import csv
 from ultralytics import YOLO
 
 def parse_args():
@@ -42,8 +43,8 @@ def main():
     model = YOLO(args.weights)
     model.to(args.device)
 
-    # 1) run val() to compute mAP
-    print("→ Running validation to compute mAP…")
+    # 1) run val() to compute mAP, precision, recall
+    print("→ Running validation to compute mAP, precision, recall…")
     t0 = time.time()
     val_res = model.val(
         data=args.data,
@@ -55,51 +56,59 @@ def main():
     t_val = time.time() - t0
     print(f"  Validation time: {t_val:.2f}s")
 
-    #  Extract the metrics dictionary from DetMetrics
+    # extract metrics dict (new API: DetMetrics.results_dict)
     if hasattr(val_res, "results_dict"):
         metrics = val_res.results_dict
     elif isinstance(val_res, (list, tuple)) and hasattr(val_res[0], "metrics"):
         metrics = val_res[0].metrics
     else:
-        metrics = None
+        metrics = {}
 
-    # Print the first metric containing "map", with a cleaned-up name
-    if isinstance(metrics, dict):
-        for key, val in metrics.items():
-            if "map" in key.lower():
-                # strip any prefix and suffix, e.g. "metrics/mAP50-95(B)" → "mAP50-95"
-                name = key.split("/")[-1].split("(")[0]
-                print(f"  ▶ {name} = {val:.3f}")
-                break
-        else:
-            print(f"  ▶ no 'map' key found; available metrics: {list(metrics.keys())}")
-    else:
-        print("  ▶ no metrics dict returned; inspect `val_res` for available fields")
+    # pick out precision, recall, first “map” key
+    p = next((v for k, v in metrics.items() if "precision" in k.lower()), None)
+    r = next((v for k, v in metrics.items() if "recall"    in k.lower()), None)
+    mp = next((v for k, v in metrics.items() if "map"       in k.lower()), None)
+
+    if p is not None:
+        print(f"  ▶ Precision = {p:.3f}")
+    if r is not None:
+        print(f"  ▶ Recall    = {r:.3f}")
+    if mp is not None:
+        print(f"  ▶ mAP       = {mp:.3f}")
 
     # 2) benchmark inference FPS on val images
     print("→ Measuring inference speed on validation set images…")
     with open(args.data, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
     val_path = cfg.get("val")
-    if not val_path or not os.path.isdir(val_path):
-        print(f"  ✖ 'val:' path {val_path!r} not found, skipping FPS measurement.")
-        return
-
     img_files = []
     for ext in ("*.png", "*.jpg", "*.jpeg"):
-        img_files.extend(glob.glob(os.path.join(val_path, ext)))
+        img_files.extend(glob.glob(os.path.join(val_path or "", ext)))
     img_files = sorted(img_files)
-    if not img_files:
-        print(f"  ✖ No images under {val_path!r}, skipping FPS measurement.")
-        return
-
     n = len(img_files)
-    t0 = time.time()
-    for img in img_files:
-        _ = model.predict(source=img, device=args.device, batch=1, verbose=False)
-    t_inf = time.time() - t0
-    fps = n / t_inf if t_inf > 0 else float("inf")
-    print(f"  Ran inference on {n} images in {t_inf:.2f}s → {fps:.2f} FPS")
+    if n == 0:
+        print(f"  ✖ No images under {val_path!r}, skipping FPS measurement.")
+        fps = 0.0
+    else:
+        t0 = time.time()
+        for img in img_files:
+            _ = model.predict(source=img, device=args.device, batch=1, verbose=False)
+        t_inf = time.time() - t0
+        fps = n / t_inf if t_inf > 0 else float("inf")
+        print(f"  Ran inference on {n} images in {t_inf:.2f}s → {fps:.2f} FPS")
+
+    # 3) save summary.csv
+    summary_rows = [("metric", "value")]
+    if p is not None:  summary_rows.append(("precision", f"{p:.3f}"))
+    if r is not None:  summary_rows.append(("recall",    f"{r:.3f}"))
+    if mp is not None: summary_rows.append(("map",       f"{mp:.3f}"))
+    summary_rows.append(("fps",       f"{fps:.2f}"))
+
+    csv_path = os.path.join(args.output_dir, "summary.csv")
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerows(summary_rows)
+    print(f"▶ Summary saved to {csv_path}")
 
 if __name__ == "__main__":
     main()
