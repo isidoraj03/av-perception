@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Implemented mAP evaluation and FPS measurement in eval.py">
-      <change afterPath="$PROJECT_DIR$/scripts/benchmark_official.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_benchmark_official.py" afterDir="false" />
+    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Benchmarked official YOLOv8s (and YOLOv11s) on KITTI; results saved.">
+      <change afterPath="$PROJECT_DIR$/tests/test_fusion_logic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yolo_pipeline/perception/fusion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yolo_pipeline/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yolo_pipeline/utils/calib.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +199,7 @@
       <workItem from="1749382997036" duration="2418000" />
       <workItem from="1749490508005" duration="1689000" />
       <workItem from="1750000175644" duration="11105000" />
-      <workItem from="1750184493168" duration="3096000" />
+      <workItem from="1750184493168" duration="3824000" />
     </task>
     <task id="LOCAL-00001" summary="inital commit">
       <option name="closed" value="true" />
@@ -367,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750186772799</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Benchmarked official YOLOv8s (and YOLOv11s) on KITTI; results saved.">
+      <option name="closed" value="true" />
+      <created>1750187896173</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1750187896173</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,10 +407,11 @@
     <MESSAGE value="Ability to switch between different YOLO v8 models" />
     <MESSAGE value="Scaffolded eval.py with high‐level outline" />
     <MESSAGE value="Implemented mAP evaluation and FPS measurement in eval.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented mAP evaluation and FPS measurement in eval.py" />
+    <MESSAGE value="Benchmarked official YOLOv8s (and YOLOv11s) on KITTI; results saved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Benchmarked official YOLOv8s (and YOLOv11s) on KITTI; results saved." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750186929776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750188236224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/av_perception$create_kitti_subset.coverage" NAME="create_kitti_subset Coverage Results" MODIFIED="1750004614486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy_script Coverage Results" MODIFIED="1750010846876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiplomskaNaloga$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749218945109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
