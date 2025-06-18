@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Verified fusion on a single offline frame" />
+    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Connected live YOLO + LiDAR fusion in main.py; printed fused results">
+      <change afterPath="$PROJECT_DIR$/tests/test_tracker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yolo_pipeline/perception/tracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -193,7 +198,8 @@
       <workItem from="1749382997036" duration="2418000" />
       <workItem from="1749490508005" duration="1689000" />
       <workItem from="1750000175644" duration="11105000" />
-      <workItem from="1750184493168" duration="4121000" />
+      <workItem from="1750184493168" duration="4948000" />
+      <workItem from="1750262840842" duration="1497000" />
     </task>
     <task id="LOCAL-00001" summary="inital commit">
       <option name="closed" value="true" />
@@ -387,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750188621530</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Connected live YOLO + LiDAR fusion in main.py; printed fused results">
+      <option name="closed" value="true" />
+      <created>1750188896199</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1750188896199</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,10 +434,11 @@
     <MESSAGE value="Benchmarked official YOLOv8s (and YOLOv11s) on KITTI; results saved." />
     <MESSAGE value="Implemented FusionEngine logic and added unit test" />
     <MESSAGE value="Verified fusion on a single offline frame" />
-    <option name="LAST_COMMIT_MESSAGE" value="Verified fusion on a single offline frame" />
+    <MESSAGE value="Connected live YOLO + LiDAR fusion in main.py; printed fused results" />
+    <option name="LAST_COMMIT_MESSAGE" value="Connected live YOLO + LiDAR fusion in main.py; printed fused results" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750188668039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750263415750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/av_perception$create_kitti_subset.coverage" NAME="create_kitti_subset Coverage Results" MODIFIED="1750004614486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy_script Coverage Results" MODIFIED="1750010846876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiplomskaNaloga$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749218945109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
