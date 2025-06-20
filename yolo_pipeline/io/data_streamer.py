@@ -1,4 +1,4 @@
-# yolo_pipeline/io/data_streamer.py
+# File: yolo_pipeline/io/data_streamer.py
 
 import os
 import threading
@@ -12,7 +12,7 @@ from PIL import Image
 
 class DataStreamer:
     """
-    Plays back KITTI as if it were a live sensor (RGB + LiDAR).
+    Plays back KITTI or nuScenes as if it were a live sensor (RGB + LiDAR).
     """
 
     def __init__(self, config_path: str = "datasets/config.yaml"):
@@ -41,7 +41,44 @@ class DataStreamer:
     def load_split(self, dataset_name: str, split: str = "train", shuffle: bool = False):
         """
         Select dataset & split. Builds lists of image and LiDAR file paths.
+        Supports 'kitti' (existing behavior) and 'nuscenes' (v1.0-mini).
         """
+        self.current_dataset = dataset_name
+        self.shuffle = shuffle
+
+        # --- nuScenes branch ---
+        if dataset_name.lower() == "nuscenes":
+            # Lazy import of nuScenes devkit
+            from nuscenes.nuscenes import NuScenes
+
+            # Resolve root_dir (absolute or relative to config)
+            root_cfg = self.cfg["nuscenes"]["root"]
+            root_dir = root_cfg if os.path.isabs(root_cfg) else os.path.join(self._config_dir, root_cfg)
+
+            # Initialize nuScenes (v1.0-mini)
+            nusc = NuScenes(version='v1.0-mini', dataroot=root_dir, verbose=False)
+
+            # Choose which camera + lidar channels to stream
+            cam_channel   = "CAM_FRONT"
+            lidar_channel = "LIDAR_TOP"
+
+            # Build ordered lists of samples
+            self._frame_list = []
+            self._pc_list    = []
+            for sample in nusc.sample:
+                # camera image
+                sd_cam = nusc.get("sample_data", sample["data"][cam_channel])
+                img_path = os.path.join(root_dir, sd_cam["filename"])
+                self._frame_list.append(img_path)
+                # lidar pointcloud
+                sd_lidar = nusc.get("sample_data", sample["data"][lidar_channel])
+                pc_path = os.path.join(root_dir, sd_lidar["filename"])
+                self._pc_list.append(pc_path)
+
+            self._idx = 0
+            return
+
+        # --- KITTI branch (existing) ---
         if dataset_name not in self.cfg:
             raise ValueError(f"Unknown dataset '{dataset_name}'")
         split_cfg = self.cfg[dataset_name]["splits"].get(split)
@@ -50,15 +87,11 @@ class DataStreamer:
 
         # Parse image vs lidar subpaths
         if isinstance(split_cfg, str):
-            img_split = split_cfg
+            img_split   = split_cfg
             lidar_split = split_cfg
         else:
             img_split   = split_cfg["images"]
             lidar_split = split_cfg["lidar"]
-
-        self.current_dataset = dataset_name
-        self.current_split   = split
-        self.shuffle         = shuffle
 
         # Resolve root_dir (absolute or relative to config)
         cfg_root = self.cfg[dataset_name]["root"]

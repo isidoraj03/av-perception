@@ -1,4 +1,4 @@
-# datasets/config.yaml
+# File: datasets/config.yaml
 
 kitti:
   root: "."                # points at datasets/ itself
@@ -9,3 +9,6 @@ kitti:
     test:
       images: "data_object_image_2/testing"
       lidar:  "data_object_velodyne/testing"
+
+nuscenes:
+  root: "v1.0-mini"  # relative to this config.yaml; points at the folder containing attribute.json, sample.json, etc.

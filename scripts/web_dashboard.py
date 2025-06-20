@@ -5,6 +5,7 @@ import time
 import cv2
 import numpy as np
 import streamlit as st
+import matplotlib.pyplot as plt
 
 from yolo_pipeline.io.data_streamer import DataStreamer
 from yolo_pipeline.perception.detector import Detector
@@ -14,11 +15,23 @@ from scripts.overlay import draw_overlay
 
 st.set_page_config(page_title="Real-time Perception Dashboard", layout="wide")
 
-# -- singletons for the heavy objects --
+# --- Sidebar controls and sequence selector ---
+SEQUENCES = {
+    "KITTI Clear-Day": "kitti",
+    "nuScenes Rain-Night": "nuscenes"
+}
+selected = st.sidebar.selectbox("Select Sequence", list(SEQUENCES.keys()))
+DATASET_NAME = SEQUENCES[selected]
+
+fusion_on    = st.sidebar.checkbox("Enable LiDAR Fusion", True)
+run_duration = st.sidebar.number_input("Run Duration (s)", min_value=1.0, max_value=120.0, value=30.0)
+interval_ms  = st.sidebar.slider("Refresh Interval (ms)", 50, 500, 100)
+
+# --- Initialize heavy resources once per sequence ---
 @st.cache_resource
-def init_streamer(config_path="datasets/config.yaml"):
+def init_streamer(config_path: str, dataset: str):
     ds = DataStreamer(config_path=config_path)
-    ds.load_split("kitti", split="train", shuffle=False)
+    ds.load_split(dataset, split="train", shuffle=False)
     ds.start()
     return ds
 
@@ -38,63 +51,63 @@ def init_fusion_engine():
 def init_tracker():
     return SimpleTracker()
 
-def main():
-    st.title("🚀 Real-time Perception Dashboard")
+ds      = init_streamer("datasets/config.yaml", DATASET_NAME)
+det     = init_detector()
+fus_eng = init_fusion_engine()
+tracker = init_tracker()
 
-    # Sidebar controls
-    fusion_on = st.sidebar.checkbox("Enable LiDAR fusion", True)
-    run_duration = st.sidebar.number_input("Run duration (s)", min_value=1.0, max_value=120.0, value=30.0)
-    interval_ms  = st.sidebar.slider("Refresh interval (ms)", 50, 500, 100)
+# --- Layout placeholders ---
+st.title("🚀 Real-Time Perception Dashboard")
+c1, c2, c3 = st.columns(3)
+img_ph     = st.empty()
+m2d        = c1.metric("2D Detections", 0)
+m3d        = c2.metric("3D Fused",      0)
+mtr        = c3.metric("Tracks",        0)
+lidar_ph   = st.empty()
 
-    # Initialize modules
-    ds      = init_streamer()
-    det     = init_detector()
-    fus_eng = init_fusion_engine()
-    tracker = init_tracker()
+# --- Main loop ---
+start_time = time.time()
+while time.time() - start_time < run_duration:
+    frame = ds.get_latest_camera_frame()
+    pc    = ds.get_latest_pointcloud()
 
-    # Placeholders for image + metrics
-    img_ph    = st.empty()
-    c1, c2, c3 = st.columns(3)
-    m2d = c1.metric("2D detections", 0)
-    m3d = c2.metric("3D fused",     0)
-    mtr = c3.metric("Tracks",       0)
-
-    start = time.time()
-    while time.time() - start < run_duration:
-        frame = ds.get_latest_camera_frame()
-        pc    = ds.get_latest_pointcloud()
-        if frame is None or pc is None:
-            time.sleep(interval_ms / 1000.0)
-            continue
-
-        t0 = time.time()
-        dets2d = det.predict(frame)
-
-        if fusion_on:
-            fused = fus_eng.fuse(dets2d, pc)
-            tracks = tracker.update(fused)
-        else:
-            fused  = []
-            tracks = []
-
-        t1  = time.time()
-        fps = 1.0 / (t1 - t0) if t1 > t0 else 0.0
-
-        # annotate and show
-        annotated = draw_overlay(frame, tracks, fps)
-        # convert BGR → RGB for Streamlit
-        annotated = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
-        img_ph.image(annotated, use_container_width=True)
-
-        # update metrics
-        m2d.metric("2D detections", len(dets2d))
-        m3d.metric("3D fused",     len(fused))
-        mtr.metric("Tracks",       len(tracks))
-
+    if frame is None or pc is None:
         time.sleep(interval_ms / 1000.0)
+        continue
 
-    ds.stop()
-    st.write("### ▶️ Streaming finished.")
+    # --- Inference & fusion ---
+    t0 = time.time()
+    dets2d = det.predict(frame)
+    if fusion_on:
+        fused  = fus_eng.fuse(dets2d, pc)
+        tracks = tracker.update(fused)
+    else:
+        fused, tracks = [], []
+    t1  = time.time()
+    fps = 1.0 / (t1 - t0) if (t1 - t0) > 0 else 0.0
 
-if __name__ == "__main__":
-    main()
+    # --- 2D Overlay & metrics ---
+    annotated = draw_overlay(frame, tracks, fps)
+    annotated = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
+    img_ph.image(annotated, use_container_width=True)
+
+    m2d.metric("2D Detections", len(dets2d))
+    m3d.metric("3D Fused",      len(fused))
+    mtr.metric("Tracks",        len(tracks))
+
+    # --- Top-down LiDAR scatter ---
+    if fusion_on and pc.size and pc.shape[0] > 0:
+        xs, ys = pc[:, 0], pc[:, 1]
+        fig, ax = plt.subplots()
+        ax.scatter(xs, ys, s=1)
+        ax.set_aspect("equal")
+        ax.set_title("LiDAR Top-Down View")
+        lidar_ph.pyplot(fig)
+        plt.close(fig)
+    else:
+        lidar_ph.empty()
+
+    time.sleep(interval_ms / 1000.0)
+
+ds.stop()
+st.write("### ▶️ Streaming finished.")
