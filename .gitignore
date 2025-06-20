@@ -17,3 +17,5 @@ isidora.jakovlevska@st:;;;;udent.um.si
 /yolov8m.pt
 /yolo11n.pt
 /yolo11s.pt
+/datasets/v1.0-mini/
+/datasets/v1.0-trainval_meta/

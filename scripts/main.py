@@ -2,19 +2,21 @@
 # scripts/main.py
 
 import time
+import cv2
 import numpy as np
 from yolo_pipeline.io.data_streamer import DataStreamer
 from yolo_pipeline.perception.detector import Detector
 from yolo_pipeline.perception.fusion import FusionEngine
 from yolo_pipeline.perception.tracker import SimpleTracker
+from scripts.overlay import draw_overlay
 
-def main(duration_sec: float = 3.0, interval_sec: float = 0.1):
-    # 0) set up streamer
+def main(duration_sec: float = 10.0, interval_sec: float = 0.05):
+    # 0) set up DataStreamer
     ds = DataStreamer(config_path="datasets/config.yaml")
     ds.load_split("kitti", split="train", shuffle=False)
     ds.start()
 
-    # 1) load YOLO detector
+    # 1) load detector
     det = Detector(model_path="yolov8n.pt", device="cpu")
     det.load_model()
 
@@ -26,50 +28,49 @@ def main(duration_sec: float = 3.0, interval_sec: float = 0.1):
     # 3) set up tracker
     tracker = SimpleTracker()
 
-    t_start = time.time()
+    cv2.namedWindow("Overlay", cv2.WINDOW_NORMAL)
+    start_time = time.time()
     frame_idx = 0
 
-    while time.time() - t_start < duration_sec:
+    while True:
+        now = time.time()
+        if now - start_time > duration_sec:
+            break
+
         cam = ds.get_latest_camera_frame()
         pc  = ds.get_latest_pointcloud()
 
         if cam is None or pc is None:
-            print(f"{time.time() - t_start:>5.2f}s | warming up…")
-        else:
-            # 4) 2D detection
-            dets2d = det.predict(cam)
-            n2d = len(dets2d)
+            # still streaming initial frame
+            time.sleep(interval_sec)
+            continue
 
-            # 5) fusion → 3D-enhanced dicts
-            fused = fus.fuse(dets2d, pc)
-            n3d = len(fused)
+        # measure processing time
+        t0 = time.time()
 
-            # 6) tracking → Detection3D objects
-            tracks = tracker.update(fused)
-            n_tr = len(tracks)
+        # 4) 2D detect
+        dets2d = det.predict(cam)
+        # 5) fuse → 3D detections
+        fused = fus.fuse(dets2d, pc)
+        # 6) track
+        tracks = tracker.update(fused)
 
-            # 7) log summary & per-track info
-            print(
-                f"{time.time() - t_start:>5.2f}s | "
-                f"Frame {frame_idx:02d} | "
-                f"2D={n2d:2d} | 3D={n3d:2d} | Tracked={n_tr:2d}"
-            )
-            for t in tracks:
-                # compute box center for display
-                x1, y1, x2, y2 = t.box2d
-                cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
-                print(
-                    f"    [ID {t.track_id:03d}] cls={t.class_id} "
-                    f"centroid=({cx:.1f},{cy:.1f}) "
-                    f"depth={t.depth:.2f} pts={t.num_points}"
-                )
-            print()
+        t1 = time.time()
+        fps = 1.0 / (t1 - t0) if (t1 - t0) > 0 else 0.0
 
-            frame_idx += 1
+        # 7) annotate & display
+        annotated = draw_overlay(cam, tracks, fps)
+        cv2.imshow("Overlay", annotated)
 
+        # quit on 'q'
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+        frame_idx += 1
         time.sleep(interval_sec)
 
     ds.stop()
+    cv2.destroyAllWindows()
     print("Playback done.")
 
 if __name__ == "__main__":
