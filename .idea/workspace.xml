@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="GitHub Actions CI fix">
-      <change beforePath="$PROJECT_DIR$/scripts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="GitHub Actions CI fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -203,7 +201,7 @@
       <workItem from="1750439630562" duration="185000" />
       <workItem from="1750439908966" duration="2267000" />
       <workItem from="1750442289481" duration="4749000" />
-      <workItem from="1750522287004" duration="5739000" />
+      <workItem from="1750522287004" duration="6081000" />
     </task>
     <task id="LOCAL-00001" summary="inital commit">
       <option name="closed" value="true" />
@@ -469,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750527979273</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="GitHub Actions CI fix">
+      <option name="closed" value="true" />
+      <created>1750528318774</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1750528318774</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +519,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="GitHub Actions CI fix" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750527918628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750528597117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/av_perception$create_kitti_subset.coverage" NAME="create_kitti_subset Coverage Results" MODIFIED="1750004614486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy_script Coverage Results" MODIFIED="1750010846876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiplomskaNaloga$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749218945109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

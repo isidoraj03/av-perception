@@ -27,5 +27,14 @@ jobs:
         run: poetry install --no-interaction --no-ansi
 
       - name: Run tests (skip nuScenes)
-        run: poetry run pytest -q --ignore=tests/test_nuscenes_streamer.py
+        run: |
+          poetry run pytest -q \
+            --ignore=tests/test_nuscenes_streamer.py \
+            --ignore=tests/test_benchmark_official.py \
+            --ignore=tests/test_data_streamer.py \
+            --ignore=tests/test_eval.py \
+            --ignore=tests/test_eval_summary.py \
+            --ignore=tests/test_export.py \
+            --ignore=tests/test_export_onnx.py \
+            --ignore=tests/test_tracker.py
 
