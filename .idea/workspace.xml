@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Real-time visualization">
-      <change afterPath="$PROJECT_DIR$/tests/test_nuscenes_streamer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DiplomskaNaloga.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DiplomskaNaloga.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Real-time visualization (overlay.py) &amp; dashboard (web_dashboard.py)">
+      <change afterPath="$PROJECT_DIR$/scripts/export.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_export.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_export_onnx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/web_dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/web_dashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yolo_pipeline/io/data_streamer.py" beforeDir="false" afterPath="$PROJECT_DIR$/yolo_pipeline/io/data_streamer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,28 +68,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Python.copy.executor": "Run",
-    "Python.copy_script (1).executor": "Run",
-    "Python.copy_script.executor": "Run",
-    "Python.create_kitti_subset.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/aaFERI/Iskic/av-perception/yolo_pipeline/io",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Python.copy.executor&quot;: &quot;Run&quot;,
+    &quot;Python.copy_script (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.copy_script.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_kitti_subset.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/aaFERI/Iskic/av-perception/yolo_pipeline/io&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\aaFERI\Iskic\av-perception\yolo_pipeline\io" />
@@ -209,7 +206,8 @@
       <workItem from="1750262840842" duration="4118000" />
       <workItem from="1750439630562" duration="185000" />
       <workItem from="1750439908966" duration="2267000" />
-      <workItem from="1750442289481" duration="3204000" />
+      <workItem from="1750442289481" duration="4749000" />
+      <workItem from="1750522287004" duration="4059000" />
     </task>
     <task id="LOCAL-00001" summary="inital commit">
       <option name="closed" value="true" />
@@ -435,7 +433,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750440749356</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Real-time visualization (overlay.py) &amp; dashboard (web_dashboard.py)">
+      <option name="closed" value="true" />
+      <created>1750446079945</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1750446079945</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,10 +478,11 @@
     <MESSAGE value="Added Detection3D class and tracker skeleton, Implemented SimpleTracker.update() interface, Verified tracker maintains consistent IDs over 50‐frame sequence" />
     <MESSAGE value="Live playback fusion → tracker; IDs stable" />
     <MESSAGE value="Real-time visualization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Real-time visualization" />
+    <MESSAGE value="Real-time visualization (overlay.py) &amp; dashboard (web_dashboard.py)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Real-time visualization (overlay.py) &amp; dashboard (web_dashboard.py)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750445104041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750526009027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/av_perception$create_kitti_subset.coverage" NAME="create_kitti_subset Coverage Results" MODIFIED="1750004614486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy_script Coverage Results" MODIFIED="1750010846876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiplomskaNaloga$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749218945109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
