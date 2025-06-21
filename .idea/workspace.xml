@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Verified ONNX export for YOLO model.">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_image_2/training/image_2/000000.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_image_2/training/image_2/000001.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_image_2/training/image_2/000002.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_image_2/training/image_2/000003.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_image_2/training/image_2/000004.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_image_2/training/image_2/000005.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_velodyne/training/velodyne/000000.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_velodyne/training/velodyne/000001.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_velodyne/training/velodyne/000002.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_velodyne/training/velodyne/000003.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_velodyne/training/velodyne/000004.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/assets/data_object_velodyne/training/velodyne/000005.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="2a69f458-e731-430e-9bb0-f4526ee4f7ad" name="Changes" comment="Add GitHub Actions CI" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,7 +201,7 @@
       <workItem from="1750439630562" duration="185000" />
       <workItem from="1750439908966" duration="2267000" />
       <workItem from="1750442289481" duration="4749000" />
-      <workItem from="1750522287004" duration="5135000" />
+      <workItem from="1750522287004" duration="5431000" />
     </task>
     <task id="LOCAL-00001" summary="inital commit">
       <option name="closed" value="true" />
@@ -459,7 +443,23 @@
       <option name="project" value="LOCAL" />
       <updated>1750526609015</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Add GitHub Actions CI">
+      <option name="closed" value="true" />
+      <created>1750527629967</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1750527629967</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Add GitHub Actions CI">
+      <option name="closed" value="true" />
+      <created>1750527712997</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1750527712997</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,10 +498,11 @@
     <MESSAGE value="Real-time visualization" />
     <MESSAGE value="Real-time visualization (overlay.py) &amp; dashboard (web_dashboard.py)" />
     <MESSAGE value="Verified ONNX export for YOLO model." />
-    <option name="LAST_COMMIT_MESSAGE" value="Verified ONNX export for YOLO model." />
+    <MESSAGE value="Add GitHub Actions CI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add GitHub Actions CI" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750527351308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/av_perception$copy_script.coverage" NAME="copy_script Coverage Results" MODIFIED="1750527918628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/av_perception$create_kitti_subset.coverage" NAME="create_kitti_subset Coverage Results" MODIFIED="1750004614486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/av_perception$copy.coverage" NAME="copy_script Coverage Results" MODIFIED="1750010846876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DiplomskaNaloga$copy.coverage" NAME="copy Coverage Results" MODIFIED="1749218945109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
