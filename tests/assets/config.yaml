@@ -1,0 +1,6 @@
+kitti:
+  root: "."                # points at tests/assets/
+  splits:
+    train:
+      images: "data_object_image_2/training"
+      lidar:  "data_object_velodyne/training"
