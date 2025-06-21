@@ -1,16 +1,23 @@
 #!/usr/bin/env python3
+import os
 import time
+
 import cv2
 import numpy as np
+
 from yolo_pipeline.io.data_streamer import DataStreamer
 from yolo_pipeline.perception.detector import Detector
 from yolo_pipeline.perception.fusion import FusionEngine
 from yolo_pipeline.perception.tracker import SimpleTracker
 from scripts.overlay import draw_overlay
 
+# detect headless/CI environments
+HEADLESS = os.getenv("CI") is not None
+
 # Change this to 'kitti' to use the KITTI dataset instead
 # or to 'nuscenes' to use the nuScenes v1.0-mini dataset.
 DATASET_NAME = "nuscenes"
+
 
 def main(duration_sec: float = 10.0, interval_sec: float = 0.05):
     # 0) set up DataStreamer
@@ -30,7 +37,10 @@ def main(duration_sec: float = 10.0, interval_sec: float = 0.05):
     # 3) set up tracker
     tracker = SimpleTracker()
 
-    cv2.namedWindow("Overlay", cv2.WINDOW_NORMAL)
+    # only create a window if we have a display
+    if not HEADLESS:
+        cv2.namedWindow("Overlay", cv2.WINDOW_NORMAL)
+
     start_time = time.time()
     frame_idx = 0
 
@@ -40,7 +50,7 @@ def main(duration_sec: float = 10.0, interval_sec: float = 0.05):
             break
 
         cam = ds.get_latest_camera_frame()
-        pc  = ds.get_latest_pointcloud()
+        pc = ds.get_latest_pointcloud()
 
         if cam is None or pc is None:
             # still streaming initial frame
@@ -59,27 +69,38 @@ def main(duration_sec: float = 10.0, interval_sec: float = 0.05):
 
         # --- print per-frame stats for pytest validation ---
         print(f"2D detections: {len(dets2d)} | 3D fused: {len(fused)}")
-        print(f"Frame {frame_idx:02d}: 2D= {len(dets2d)} | 3D= {len(fused)} | Tracked= {len(tracks)}")
+        print(
+            f"Frame {frame_idx:02d}: 2D= {len(dets2d)} | "
+            f"3D= {len(fused)} | Tracked= {len(tracks)}"
+        )
         for t in tracks:
-            print(f"  [ID {t.track_id:03d}] cls={t.class_id} depth={t.depth:.2f} pts={t.num_points}")
+            print(
+                f"  [ID {t.track_id:03d}] cls={t.class_id} "
+                f"depth={t.depth:.2f} pts={t.num_points}"
+            )
 
         t1 = time.time()
         fps = 1.0 / (t1 - t0) if (t1 - t0) > 0 else 0.0
 
         # 7) annotate & display
         annotated = draw_overlay(cam, tracks, fps)
-        cv2.imshow("Overlay", annotated)
 
-        # quit on 'q'
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        if not HEADLESS:
+            cv2.imshow("Overlay", annotated)
+            # quit on 'q'
+            if cv2.waitKey(1) & 0xFF == ord("q"):
+                break
 
         frame_idx += 1
         time.sleep(interval_sec)
 
     ds.stop()
-    cv2.destroyAllWindows()
+
+    if not HEADLESS:
+        cv2.destroyAllWindows()
+
     print("Playback done.")
+
 
 if __name__ == "__main__":
     main()
