@@ -16,7 +16,7 @@ def parse_args():
     )
     parser.add_argument(
         "--model", type=str, default="yolov8n",
-        help="YOLO model to use: e.g. 'yolov8n','yolov11n' or path to .pt"
+        help="YOLO model to use: e.g. 'yolov8n','yolov11n' or path to .pt'"
     )
     parser.add_argument(
         "--data", type=str, required=True,

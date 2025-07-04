@@ -1,0 +1,8 @@
+# datasets/nuscenes_full_front.yaml
+train: v1.0-full/samples/CAM_FRONT
+val:   v1.0-full/samples/CAM_FRONT
+
+nc:    10
+names: [car, truck, construction_vehicle, bus,
+        trailer, barrier, motorcycle, bicycle,
+        pedestrian, traffic_cone]

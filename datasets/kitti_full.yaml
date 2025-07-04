@@ -1,0 +1,4 @@
+train: C:\aaFERI\Iskic\av-perception\datasets\kitti_full\images\train
+val:   C:\aaFERI\Iskic\av-perception\datasets\kitti_full\images\train
+nc:    3
+names: ['Car', 'Pedestrian', 'Cyclist']

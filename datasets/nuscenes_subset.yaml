@@ -1,0 +1,4 @@
+train: C:\aaFERI\Iskic\av-perception\datasets\nuscenes_subset\images
+val:   C:\aaFERI\Iskic\av-perception\datasets\nuscenes_subset\images
+nc:    10
+names: ['car', 'truck', 'construction_vehicle', 'bus', 'trailer', 'barrier', 'motorcycle', 'bicycle', 'pedestrian', 'traffic_cone']

@@ -18,12 +18,11 @@ SEQUENCES = {
     "KITTI Clear-Day":        "kitti",
     "nuScenes (mini v1.0)":   "nuscenes",
     "nuScenes (full v1.0)":   "nuscenes-full",
-    "nuScenes (night)": "nuscenes-full-night",
-    "nuScenes (rain)": "nuscenes-full-rain",
-    "nuScenes (combined)": "nuscenes-full-adverse",
-
+    "nuScenes (night)":       "nuscenes-full-night",
+    "nuScenes (rain)":        "nuscenes-full-rain",
+    "nuScenes (combined)":    "nuscenes-full-adverse",
 }
-selected = st.sidebar.selectbox("Select Sequence", list(SEQUENCES.keys()))
+selected     = st.sidebar.selectbox("Select Sequence", list(SEQUENCES.keys()))
 DATASET_NAME = SEQUENCES[selected]
 
 fusion_on    = st.sidebar.checkbox("Enable LiDAR Fusion", True)
@@ -38,11 +37,13 @@ def init_streamer(config_path: str, dataset: str):
     return ds
 
 @st.cache_resource
-def init_detector():
-    det = Detector(
-        model_path = "runs/train_quick_cpu/train/weights/best.pt",
-        device = "cpu"
-    )
+def init_detector(dataset_name: str):
+    # choose different weights depending on dataset
+    if dataset_name == "kitti":
+        model_path = "runs/train_quick_cpu/train/weights/best.pt"
+    else:
+        model_path = "runs/train_nuscenes_sub/train/weights/best.pt"
+    det = Detector(model_path=model_path, device="cpu")
     det.load_model()
     return det
 
@@ -56,8 +57,9 @@ def init_fusion_engine():
 def init_tracker():
     return SimpleTracker()
 
+# initialize components
 ds      = init_streamer("datasets/config.yaml", DATASET_NAME)
-det     = init_detector()
+det     = init_detector(DATASET_NAME)
 fus_eng = init_fusion_engine()
 tracker = init_tracker()
 
