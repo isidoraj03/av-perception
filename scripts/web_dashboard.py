@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-# scripts/web_dashboard.py
-
 import time
 import cv2
 import numpy as np
@@ -17,8 +15,13 @@ st.set_page_config(page_title="Real-time Perception Dashboard", layout="wide")
 
 # --- Sidebar controls and sequence selector ---
 SEQUENCES = {
-    "KITTI Clear-Day": "kitti",
-    "nuScenes Rain-Night": "nuscenes"
+    "KITTI Clear-Day":        "kitti",
+    "nuScenes (mini v1.0)":   "nuscenes",
+    "nuScenes (full v1.0)":   "nuscenes-full",
+    "nuScenes (night)": "nuscenes-full-night",
+    "nuScenes (rain)": "nuscenes-full-rain",
+    "nuScenes (combined)": "nuscenes-full-adverse",
+
 }
 selected = st.sidebar.selectbox("Select Sequence", list(SEQUENCES.keys()))
 DATASET_NAME = SEQUENCES[selected]
@@ -27,7 +30,6 @@ fusion_on    = st.sidebar.checkbox("Enable LiDAR Fusion", True)
 run_duration = st.sidebar.number_input("Run Duration (s)", min_value=1.0, max_value=120.0, value=30.0)
 interval_ms  = st.sidebar.slider("Refresh Interval (ms)", 50, 500, 100)
 
-# --- Initialize heavy resources once per sequence ---
 @st.cache_resource
 def init_streamer(config_path: str, dataset: str):
     ds = DataStreamer(config_path=config_path)
@@ -37,14 +39,17 @@ def init_streamer(config_path: str, dataset: str):
 
 @st.cache_resource
 def init_detector():
-    det = Detector(model_path="yolov8n.pt", device="cpu")
+    det = Detector(
+        model_path = "runs/train_quick_cpu/train/weights/best.pt",
+        device = "cpu"
+    )
     det.load_model()
     return det
 
 @st.cache_resource
 def init_fusion_engine():
-    intrinsics = {"fx": 1.0, "fy": 1.0, "cx": 0.0, "cy": 0.0}
-    extrinsics = {"R": np.eye(3), "T": [0, 0, 0]}
+    intrinsics = {"fx":1.0, "fy":1.0, "cx":0.0, "cy":0.0}
+    extrinsics = {"R": np.eye(3), "T":[0,0,0]}
     return FusionEngine(intrinsics, extrinsics, min_points=3)
 
 @st.cache_resource
@@ -56,7 +61,6 @@ det     = init_detector()
 fus_eng = init_fusion_engine()
 tracker = init_tracker()
 
-# --- Layout placeholders ---
 st.title("🚀 Real-Time Perception Dashboard")
 c1, c2, c3 = st.columns(3)
 img_ph     = st.empty()
@@ -65,17 +69,14 @@ m3d        = c2.metric("3D Fused",      0)
 mtr        = c3.metric("Tracks",        0)
 lidar_ph   = st.empty()
 
-# --- Main loop ---
 start_time = time.time()
 while time.time() - start_time < run_duration:
     frame = ds.get_latest_camera_frame()
     pc    = ds.get_latest_pointcloud()
-
     if frame is None or pc is None:
         time.sleep(interval_ms / 1000.0)
         continue
 
-    # --- Inference & fusion ---
     t0 = time.time()
     dets2d = det.predict(frame)
     if fusion_on:
@@ -83,10 +84,9 @@ while time.time() - start_time < run_duration:
         tracks = tracker.update(fused)
     else:
         fused, tracks = [], []
-    t1  = time.time()
+    t1 = time.time()
     fps = 1.0 / (t1 - t0) if (t1 - t0) > 0 else 0.0
 
-    # --- 2D Overlay & metrics ---
     annotated = draw_overlay(frame, tracks, fps)
     annotated = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
     img_ph.image(annotated, use_container_width=True)
@@ -95,9 +95,8 @@ while time.time() - start_time < run_duration:
     m3d.metric("3D Fused",      len(fused))
     mtr.metric("Tracks",        len(tracks))
 
-    # --- Top-down LiDAR scatter ---
     if fusion_on and pc.size and pc.shape[0] > 0:
-        xs, ys = pc[:, 0], pc[:, 1]
+        xs, ys = pc[:,0], pc[:,1]
         fig, ax = plt.subplots()
         ax.scatter(xs, ys, s=1)
         ax.set_aspect("equal")

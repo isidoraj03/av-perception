@@ -1,7 +1,7 @@
 # File: datasets/config.yaml
 
 kitti:
-  root: "."                # points at datasets/ itself
+  root: "."                # as before
   splits:
     train:
       images: "data_object_image_2/training"
@@ -11,4 +11,25 @@ kitti:
       lidar:  "data_object_velodyne/testing"
 
 nuscenes:
-  root: "v1.0-mini"  # relative to this config.yaml; points at the folder containing attribute.json, sample.json, etc.
+  root: "v1.0-mini"
+
+# the “vanilla” full set (no filtering)
+nuscenes-full:
+  root: "v1.0-full"
+
+# now our *named* subsets:
+nuscenes-full-night:
+  root: "v1.0-full"
+  visibility_filters: [night]
+
+nuscenes-full-rain:
+  root: "v1.0-full"
+  visibility_filters: [rain]
+
+
+# combined adverse weather:
+nuscenes-full-adverse:
+  root: "v1.0-full"
+  visibility_filters:
+    - night
+    - rain
