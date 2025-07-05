@@ -35,7 +35,7 @@ poetry shell  # activate venv
 
 | Dataset | Official link | What to download | Where to place |
 |---------|---------------|------------------|----------------|
-| **KITTI Object** | <https://www.cvlibs.net/datasets/kitti/> | *data_object_image_2*, *data_object_velodyne*, *data_object_label_2* (+ *data_object_calib*) | `datasets/` (so paths look like `datasets/data_object_image_2/...`) |
+| **KITTI Object** | <https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark> | *data_object_image_2*, *data_object_velodyne*, *data_object_label_2* (+ *data_object_calib*) | `datasets/` (so paths look like `datasets/data_object_image_2/...`) |
 | **nuScenes** | <https://www.nuscenes.org/download> | *v1.0-mini* **or** full *v1.0-trainval* ± *v1.0-test* | `datasets/` (keep the folder names created by the NuScenes script) |
 
 > **Tip** – the repo’s `datasets/config.yaml` expects the above layout **out‑of‑the‑box**.  
