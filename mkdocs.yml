@@ -1,13 +1,4 @@
 site_name: AV-Perception
-site_description: Real-time 2D/3D perception with YOLO + KITTI/nuScenes
-site_author: Isidora Jakovlevska
-
-theme:
-  name: material
-  palette:
-    primary: indigo
-    accent: indigo
-
 nav:
   - Home: index.md
   - Quick Start: quick-start.md
@@ -15,30 +6,18 @@ nav:
   - Data Setup: data-setup.md
   - Live Demo: live-demo.md
   - Web Dashboard: web-dashboard.md
-  - Scripts:
-      - Train: scripts/train.md
+  - Scripts & CLI:
+      - Benchmark Official: scripts/benchmark_official.md
+      - Create KITTI Full: scripts/create_kitti_full.md
+      - Create nuScenes Subset: scripts/create_nuscenes_subset.md
       - Eval: scripts/eval.md
-      - Benchmark: scripts/benchmark_official.md
       - Export: scripts/export.md
       - Fusion Offline: scripts/fusion_offline.md
-      - Main Playback: scripts/main.md
+      - Main: scripts/main.md
       - Overlay: scripts/overlay.md
+      - Train: scripts/train.md
   - API Reference:
-      - Detector: reference/detector.md
-      - FusionEngine: reference/fusion.md
-      - SimpleTracker: reference/tracker.md
       - DataStreamer: reference/data_streamer.md
-
-plugins:
-  - search
-  - mkdocstrings:
-      handlers:
-        python:
-          options:
-            docstring_style: google
-
-markdown_extensions:
-  - admonition
-  - codehilite
-  - toc:
-      permalink: true
+      - Detector: reference/detector.md
+      - Fusion: reference/fusion.md
+      - Tracker: reference/tracker.md
