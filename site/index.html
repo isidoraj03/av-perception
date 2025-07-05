@@ -6,10 +6,6 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Real-time 2D/3D perception with YOLO + KITTI/nuScenes">
-      
-      
-        <meta name="author" content="Isidora Jakovlevska">
       
       
       
@@ -22,14 +18,11 @@
     
     
       
-        <title>AV-Perception</title>
+        <title>AV-Perception - AV-Perception</title>
       
     
     
       <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
-      
-        
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,8 +41,6 @@
       
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
-    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -60,12 +51,7 @@
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -110,15 +96,15 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              AV-Perception
             
           </span>
         </div>
       </div>
     </div>
     
-      
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -405,7 +391,7 @@
   
   
   <span class="md-ellipsis">
-    Scripts
+    Scripts & CLI
     
   </span>
   
@@ -416,7 +402,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Scripts
+            Scripts & CLI
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -427,12 +413,58 @@
   
   
     <li class="md-nav__item">
-      <a href="scripts/train/" class="md-nav__link">
+      <a href="scripts/benchmark_official/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Train
+    Benchmark Official
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scripts/create_kitti_full/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create KITTI Full
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scripts/create_nuscenes_subset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create nuScenes Subset
     
   </span>
   
@@ -456,29 +488,6 @@
   
   <span class="md-ellipsis">
     Eval
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="scripts/benchmark_official/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Benchmark
     
   </span>
   
@@ -547,7 +556,7 @@
   
   
   <span class="md-ellipsis">
-    Main Playback
+    Main
     
   </span>
   
@@ -571,6 +580,29 @@
   
   <span class="md-ellipsis">
     Overlay
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scripts/train/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Train
     
   </span>
   
@@ -633,6 +665,29 @@
   
   
     <li class="md-nav__item">
+      <a href="reference/data_streamer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataStreamer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="reference/detector/" class="md-nav__link">
         
   
@@ -661,7 +716,7 @@
   
   
   <span class="md-ellipsis">
-    FusionEngine
+    Fusion
     
   </span>
   
@@ -684,30 +739,7 @@
   
   
   <span class="md-ellipsis">
-    SimpleTracker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="reference/data_streamer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    DataStreamer
+    Tracker
     
   </span>
   
@@ -778,7 +810,6 @@
 
 <h1 id="av-perception">AV-Perception<a class="headerlink" href="#av-perception" title="Permanent link">&para;</a></h1>
 <p><strong>Real-time 2D/3D perception demo using Ultralytics YOLO and KITTI/nuScenes “mini” subsets.</strong></p>
-<hr />
 <h2 id="contents">Contents<a class="headerlink" href="#contents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="quick-start/">Quick Start</a>  </li>
@@ -786,18 +817,33 @@
 <li><a href="data-setup/">Data Setup</a>  </li>
 <li><a href="live-demo/">Live Demo</a>  </li>
 <li><a href="web-dashboard/">Web Dashboard</a>  </li>
-<li><a href="#">Scripts &amp; CLI</a>  </li>
-<li><a href="#">API Reference</a>  </li>
+<li><strong>Scripts &amp; CLI</strong>  </li>
+<li><a href="scripts/benchmark_official/">Benchmark Official</a>  </li>
+<li><a href="scripts/create_kitti_full/">Create KITTI Full</a>  </li>
+<li><a href="scripts/create_nuscenes_subset/">Create nuScenes Subset</a>  </li>
+<li><a href="scripts/eval/">Eval</a>  </li>
+<li><a href="scripts/export/">Export</a>  </li>
+<li><a href="scripts/fusion_offline/">Fusion Offline</a>  </li>
+<li><a href="scripts/main/">Main</a>  </li>
+<li><a href="scripts/overlay/">Overlay</a>  </li>
+<li><a href="scripts/train/">Train</a>  </li>
+<li><strong>API Reference</strong>  </li>
+<li><a href="reference/data_streamer/">DataStreamer</a>  </li>
+<li><a href="reference/detector/">Detector</a>  </li>
+<li><a href="reference/fusion/">Fusion</a>  </li>
+<li><a href="reference/tracker/">Tracker</a>  </li>
 </ul>
-<hr />
-<p><strong>Repository:</strong> https://github.com/isidoraj03/av-perception</p>
-<p><strong>Citation:</strong> See “License &amp; Citation” in README</p>
+<p><strong>Repository:</strong> <a href="https://github.com/isidoraj03/av-perception">https://github.com/isidoraj03/av-perception</a><br />
+<strong>Citation:</strong> See “License &amp; Citation” in README</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

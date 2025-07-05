@@ -6,10 +6,6 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Real-time 2D/3D perception with YOLO + KITTI/nuScenes">
-      
-      
-        <meta name="author" content="Isidora Jakovlevska">
       
       
       
@@ -30,9 +26,6 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
-      
       
 
 
@@ -50,8 +43,6 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
-    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -62,12 +53,7 @@
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -119,8 +105,8 @@
       </div>
     </div>
     
-      
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -425,7 +411,7 @@
   
   
   <span class="md-ellipsis">
-    Scripts
+    Scripts & CLI
     
   </span>
   
@@ -436,7 +422,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Scripts
+            Scripts & CLI
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -447,12 +433,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../scripts/train/" class="md-nav__link">
+      <a href="../scripts/benchmark_official/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Train
+    Benchmark Official
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/create_kitti_full/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create KITTI Full
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/create_nuscenes_subset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create nuScenes Subset
     
   </span>
   
@@ -476,29 +508,6 @@
   
   <span class="md-ellipsis">
     Eval
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../scripts/benchmark_official/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Benchmark
     
   </span>
   
@@ -567,7 +576,7 @@
   
   
   <span class="md-ellipsis">
-    Main Playback
+    Main
     
   </span>
   
@@ -591,6 +600,29 @@
   
   <span class="md-ellipsis">
     Overlay
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/train/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Train
     
   </span>
   
@@ -653,6 +685,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../reference/data_streamer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataStreamer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../reference/detector/" class="md-nav__link">
         
   
@@ -681,7 +736,7 @@
   
   
   <span class="md-ellipsis">
-    FusionEngine
+    Fusion
     
   </span>
   
@@ -704,30 +759,7 @@
   
   
   <span class="md-ellipsis">
-    SimpleTracker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../reference/data_streamer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    DataStreamer
+    Tracker
     
   </span>
   
@@ -821,53 +853,56 @@
 <ol>
 <li>
 <p><strong>Ensure Python 3.11 is installed</strong><br />
-<code>bash
-   python3.11 --version</code></p>
+   <div class="highlight"><pre><span></span><code>python3.11<span class="w"> </span>--version
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Install Poetry (if not already installed)</strong><br />
-<code>bash
-   curl -sSL https://install.python-poetry.org | python3.11 -
-   export PATH="$HOME/.local/bin:$PATH"</code>  </p>
+   <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span>https://install.python-poetry.org<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3.11<span class="w"> </span>-
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Note:</strong> Verify with <code>poetry --version</code>.</p>
 </li>
 <li>
 <p><strong>Clone the repository and install dependencies</strong><br />
-<code>bash
-   git clone https://github.com/&lt;your-org&gt;/av-perception.git
-   cd av-perception
-   poetry install</code></p>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/isidoraj03/av-perception.git
+<span class="nb">cd</span><span class="w"> </span>av-perception
+poetry<span class="w"> </span>install
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>(Optional) Activate the virtual environment</strong><br />
-<code>bash
-   poetry shell</code></p>
+   <div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>shell
+</code></pre></div></p>
 </li>
 </ol>
 <hr />
 <h3 id="development-tools">Development Tools<a class="headerlink" href="#development-tools" title="Permanent link">&para;</a></h3>
 <p>These tools are included for development:<br />
 - <strong>MkDocs</strong>: Generates the documentation site.<br />
-<code>bash
-  poetry add --dev mkdocs mkdocs-material mkdocstrings[python]</code><br />
+  <div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>mkdocs<span class="w"> </span>mkdocs-material<span class="w"> </span>mkdocstrings<span class="o">[</span>python<span class="o">]</span>
+</code></pre></div>
 - <strong>Streamlit</strong>: Powers the web dashboard.<br />
-<code>bash
-  poetry add streamlit matplotlib opencv-python</code><br />
+  <div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>add<span class="w"> </span>streamlit<span class="w"> </span>matplotlib<span class="w"> </span>opencv-python
+</code></pre></div>
 - <strong>MLflow</strong>: Logs training experiments (included in dependencies).</p>
 <hr />
 <h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
-<p>After installation, check:  </p>
-<div class="codehilite"><pre><span></span><code>poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>--version<span class="w">  </span><span class="c1"># Should be Python 3.11.x</span>
+<p>After installation, check:<br />
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>--version<span class="w">  </span><span class="c1"># Should be Python 3.11.x</span>
 poetry<span class="w"> </span>run<span class="w"> </span>pip<span class="w"> </span>freeze<span class="w">       </span><span class="c1"># List installed packages</span>
-</code></pre></div>
+</code></pre></div></p>
 
 
 
 
 
 
+
+  
+  
 
 
 

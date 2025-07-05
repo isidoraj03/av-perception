@@ -6,10 +6,6 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Real-time 2D/3D perception with YOLO + KITTI/nuScenes">
-      
-      
-        <meta name="author" content="Isidora Jakovlevska">
       
       
       
@@ -30,9 +26,6 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
-      
       
 
 
@@ -50,8 +43,6 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
-    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -62,12 +53,7 @@
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -119,8 +105,8 @@
       </div>
     </div>
     
-      
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -324,18 +310,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kitti-mini-subset" class="md-nav__link">
+  <a href="#kitti-mini-subset-50-frames" class="md-nav__link">
     <span class="md-ellipsis">
-      KITTI “mini” Subset
+      KITTI “mini” Subset (50 frames)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#nuscenes-v10-mini" class="md-nav__link">
+  <a href="#kitti-full-training-split" class="md-nav__link">
     <span class="md-ellipsis">
-      nuScenes v1.0-mini
+      KITTI Full Training Split
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nuscenes-v10mini" class="md-nav__link">
+    <span class="md-ellipsis">
+      nuScenes v1.0‑mini
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-nuscenes-subset-from-v10trainval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom nuScenes Subset from v1.0‑trainval
     </span>
   </a>
   
@@ -416,7 +420,7 @@
   
   
   <span class="md-ellipsis">
-    Scripts
+    Scripts & CLI
     
   </span>
   
@@ -427,7 +431,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Scripts
+            Scripts & CLI
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -438,12 +442,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../scripts/train/" class="md-nav__link">
+      <a href="../scripts/benchmark_official/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Train
+    Benchmark Official
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/create_kitti_full/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create KITTI Full
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/create_nuscenes_subset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create nuScenes Subset
     
   </span>
   
@@ -467,29 +517,6 @@
   
   <span class="md-ellipsis">
     Eval
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../scripts/benchmark_official/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Benchmark
     
   </span>
   
@@ -558,7 +585,7 @@
   
   
   <span class="md-ellipsis">
-    Main Playback
+    Main
     
   </span>
   
@@ -582,6 +609,29 @@
   
   <span class="md-ellipsis">
     Overlay
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/train/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Train
     
   </span>
   
@@ -644,6 +694,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../reference/data_streamer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataStreamer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../reference/detector/" class="md-nav__link">
         
   
@@ -672,7 +745,7 @@
   
   
   <span class="md-ellipsis">
-    FusionEngine
+    Fusion
     
   </span>
   
@@ -695,30 +768,7 @@
   
   
   <span class="md-ellipsis">
-    SimpleTracker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../reference/data_streamer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    DataStreamer
+    Tracker
     
   </span>
   
@@ -763,18 +813,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kitti-mini-subset" class="md-nav__link">
+  <a href="#kitti-mini-subset-50-frames" class="md-nav__link">
     <span class="md-ellipsis">
-      KITTI “mini” Subset
+      KITTI “mini” Subset (50 frames)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#nuscenes-v10-mini" class="md-nav__link">
+  <a href="#kitti-full-training-split" class="md-nav__link">
     <span class="md-ellipsis">
-      nuScenes v1.0-mini
+      KITTI Full Training Split
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nuscenes-v10mini" class="md-nav__link">
+    <span class="md-ellipsis">
+      nuScenes v1.0‑mini
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-nuscenes-subset-from-v10trainval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom nuScenes Subset from v1.0‑trainval
     </span>
   </a>
   
@@ -797,9 +865,9 @@
 
 
 <h1 id="data-setup">Data Setup<a class="headerlink" href="#data-setup" title="Permanent link">&para;</a></h1>
-<p>This project supports <strong>KITTI “mini” subset</strong> (50 images) and <strong>nuScenes v1.0-mini</strong> (official mini split).</p>
+<p>This project supports the official <strong>nuScenes v1.0‑mini</strong>, the 50‑frame <strong>KITTI “mini” subset</strong>, the entire <strong>KITTI full training split</strong>, and arbitrary <strong>nuScenes subsets</strong> generated with the helper scripts below.</p>
 <hr />
-<h2 id="kitti-mini-subset">KITTI “mini” Subset<a class="headerlink" href="#kitti-mini-subset" title="Permanent link">&para;</a></h2>
+<h2 id="kitti-mini-subset-50-frames">KITTI “mini” Subset <em>(50 frames)</em><a class="headerlink" href="#kitti-mini-subset-50-frames" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Download raw KITTI data</strong>  </li>
 <li>Visit <a href="https://www.cvlibs.net/datasets/kitti/">KITTI dataset page</a>.  </li>
@@ -810,61 +878,94 @@
 <p><strong>Extract and organize</strong>  </p>
 </li>
 <li>Unpack to this structure:<br />
-<code>&lt;KITTI_ROOT&gt;/
-     ├── image_2/
-     └── velodyne/</code>  </li>
+     <div class="highlight"><pre><span></span><code>&lt;KITTI_ROOT&gt;/
+├── image_2/
+└── velodyne/
+</code></pre></div></li>
 <li>
 <p>Update <code>datasets/config.yaml</code>:<br />
-<code>yaml
-     kitti:
-       root: /absolute/path/to/&lt;KITTI_ROOT&gt;</code></p>
+     <div class="highlight"><pre><span></span><code><span class="nt">kitti</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/absolute/path/to/&lt;KITTI_ROOT&gt;</span>
+</code></pre></div></p>
 </li>
 <li>
-<p><strong>Generate the 50-image subset</strong>  </p>
+<p><strong>Generate the 50‑image subset</strong>  </p>
 </li>
 <li>Run:<br />
-<code>bash
-     poetry run python scripts/create_kitti_subset.py 50</code>  </li>
+     <div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/create_kitti_subset.py<span class="w"> </span><span class="m">50</span>
+</code></pre></div></li>
 <li>Creates under <code>datasets/</code>:  <ul>
 <li><code>kitti50/images/</code>  </li>
 <li><code>kitti50/labels/</code>  </li>
 <li><code>kitti50.yaml</code>  </li>
 </ul>
 </li>
-<li><strong>Note:</strong> The script subsamples the raw KITTI data.</li>
 </ol>
 <hr />
-<h2 id="nuscenes-v10-mini">nuScenes v1.0-mini<a class="headerlink" href="#nuscenes-v10-mini" title="Permanent link">&para;</a></h2>
+<h2 id="kitti-full-training-split">KITTI Full Training Split<a class="headerlink" href="#kitti-full-training-split" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>New!</strong> Use <a href="scripts/create_kitti_full.html"><code>create_kitti_full.py</code></a> to convert the <strong>entire KITTI training split</strong> into YOLO format.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/create_kitti_full.py
+</code></pre></div>
+<p>This writes:</p>
+<div class="highlight"><pre><span></span><code>datasets/kitti_full/
+├── images/train/
+└── labels/train/
+datasets/kitti_full.yaml
+</code></pre></div>
+<p>You can now train / evaluate with <code>datasets/kitti_full.yaml</code>.</p>
+<hr />
+<h2 id="nuscenes-v10mini">nuScenes v1.0‑mini<a class="headerlink" href="#nuscenes-v10mini" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Download the mini split</strong>  </li>
 <li>Visit <a href="https://www.nuscenes.org/download">nuScenes download page</a>.  </li>
 <li>
 <p>Or use:<br />
-<code>bash
-     wget https://www.nuscenes.org/data/v1.0-mini.tgz
-     tar xzf v1.0-mini.tgz</code></p>
+     <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://www.nuscenes.org/data/v1.0-mini.tgz
+tar<span class="w"> </span>xzf<span class="w"> </span>v1.0-mini.tgz
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Place the folder</strong>  </p>
 </li>
 <li>
 <p>Move <code>v1.0-mini/</code> to:<br />
-<code>av-perception/datasets/v1.0-mini/</code></p>
+     <div class="highlight"><pre><span></span><code>av-perception/datasets/v1.0-mini/
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Update the config</strong>  </p>
 </li>
 <li>In <code>datasets/config.yaml</code>:<br />
-<code>yaml
-     nuscenes:
-       root: v1.0-mini</code></li>
+     <div class="highlight"><pre><span></span><code><span class="nt">nuscenes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.0-mini</span>
+</code></pre></div></li>
 </ol>
+<hr />
+<h2 id="custom-nuscenes-subset-from-v10trainval">Custom nuScenes Subset from v1.0‑trainval<a class="headerlink" href="#custom-nuscenes-subset-from-v10trainval" title="Permanent link">&para;</a></h2>
+<p>If you have the full nuScenes <em>trainval</em> set and want a lightweight subset, run <a href="scripts/create_nuscenes_subset.html"><code>create_nuscenes_subset.py</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1 500 front‑camera frames by default</span>
+poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/create_nuscenes_subset.py
+<span class="c1"># or a smaller subset</span>
+poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/create_nuscenes_subset.py<span class="w"> </span>--num-images<span class="w"> </span><span class="m">500</span>
+</code></pre></div>
+<p>This outputs:</p>
+<div class="highlight"><pre><span></span><code>datasets/nuscenes_subset/
+├── images/
+└── labels/
+datasets/nuscenes_subset.yaml
+</code></pre></div>
+<p>You can immediately train / evaluate with <code>datasets/nuscenes_subset.yaml</code>.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

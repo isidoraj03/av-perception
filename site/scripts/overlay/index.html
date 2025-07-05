@@ -6,17 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Real-time 2D/3D perception with YOLO + KITTI/nuScenes">
-      
-      
-        <meta name="author" content="Isidora Jakovlevska">
       
       
       
         <link rel="prev" href="../main/">
       
       
-        <link rel="next" href="../../reference/detector/">
+        <link rel="next" href="../train/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -29,9 +25,6 @@
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,8 +43,6 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -62,12 +53,7 @@
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -119,8 +105,8 @@
       </div>
     </div>
     
-      
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -358,7 +344,7 @@
   
   
   <span class="md-ellipsis">
-    Scripts
+    Scripts & CLI
     
   </span>
   
@@ -369,7 +355,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Scripts
+            Scripts & CLI
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -380,12 +366,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../train/" class="md-nav__link">
+      <a href="../benchmark_official/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Train
+    Benchmark Official
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create_kitti_full/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create KITTI Full
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create_nuscenes_subset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create nuScenes Subset
     
   </span>
   
@@ -409,29 +441,6 @@
   
   <span class="md-ellipsis">
     Eval
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../benchmark_official/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Benchmark
     
   </span>
   
@@ -500,7 +509,7 @@
   
   
   <span class="md-ellipsis">
-    Main Playback
+    Main
     
   </span>
   
@@ -618,6 +627,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../train/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Train
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -670,6 +702,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/data_streamer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataStreamer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reference/detector/" class="md-nav__link">
         
   
@@ -698,7 +753,7 @@
   
   
   <span class="md-ellipsis">
-    FusionEngine
+    Fusion
     
   </span>
   
@@ -721,30 +776,7 @@
   
   
   <span class="md-ellipsis">
-    SimpleTracker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/data_streamer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    DataStreamer
+    Tracker
     
   </span>
   
@@ -849,9 +881,8 @@
 <h1 id="overlaypy"><code>overlay.py</code><a class="headerlink" href="#overlaypy" title="Permanent link">&para;</a></h1>
 <p>Helper function to draw detection &amp; tracking overlays on an image.</p>
 <h2 id="function">Function<a class="headerlink" href="#function" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="n">draw_overlay</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">tracks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection3D</span><span class="p">],</span> <span class="n">fps</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+<div class="highlight"><pre><span></span><code><span class="n">draw_overlay</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">tracks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection3D</span><span class="p">],</span> <span class="n">fps</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
 </code></pre></div>
-
 <h3 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>frame</code>
@@ -882,7 +913,7 @@
 <li>Draws blue bounding boxes and labels with <code>ID</code>, <code>D:&lt;depth&gt;m</code>, <code>pts:&lt;num_points&gt;</code>.</li>
 </ul>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">scripts.overlay</span><span class="w"> </span><span class="kn">import</span> <span class="n">draw_overlay</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">scripts.overlay</span><span class="w"> </span><span class="kn">import</span> <span class="n">draw_overlay</span>
 <span class="n">annotated</span> <span class="o">=</span> <span class="n">draw_overlay</span><span class="p">(</span><span class="n">rgb_frame</span><span class="p">,</span> <span class="n">tracks</span><span class="p">,</span> <span class="n">fps</span><span class="p">)</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Overlay&quot;</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
 </code></pre></div>

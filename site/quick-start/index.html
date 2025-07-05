@@ -6,10 +6,6 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Real-time 2D/3D perception with YOLO + KITTI/nuScenes">
-      
-      
-        <meta name="author" content="Isidora Jakovlevska">
       
       
       
@@ -30,9 +26,6 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
-      
       
 
 
@@ -50,8 +43,6 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
-    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -62,12 +53,7 @@
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -119,8 +105,8 @@
       </div>
     </div>
     
-      
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -366,7 +352,7 @@
   
   
   <span class="md-ellipsis">
-    Scripts
+    Scripts & CLI
     
   </span>
   
@@ -377,7 +363,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Scripts
+            Scripts & CLI
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -388,12 +374,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../scripts/train/" class="md-nav__link">
+      <a href="../scripts/benchmark_official/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Train
+    Benchmark Official
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/create_kitti_full/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create KITTI Full
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/create_nuscenes_subset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create nuScenes Subset
     
   </span>
   
@@ -417,29 +449,6 @@
   
   <span class="md-ellipsis">
     Eval
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../scripts/benchmark_official/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Benchmark
     
   </span>
   
@@ -508,7 +517,7 @@
   
   
   <span class="md-ellipsis">
-    Main Playback
+    Main
     
   </span>
   
@@ -532,6 +541,29 @@
   
   <span class="md-ellipsis">
     Overlay
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/train/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Train
     
   </span>
   
@@ -594,6 +626,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../reference/data_streamer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataStreamer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../reference/detector/" class="md-nav__link">
         
   
@@ -622,7 +677,7 @@
   
   
   <span class="md-ellipsis">
-    FusionEngine
+    Fusion
     
   </span>
   
@@ -645,30 +700,7 @@
   
   
   <span class="md-ellipsis">
-    SimpleTracker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../reference/data_streamer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    DataStreamer
+    Tracker
     
   </span>
   
@@ -726,44 +758,44 @@
 <ol>
 <li>
 <p><strong>Clone the repository</strong><br />
-<code>bash
-   git clone https://github.com/&lt;your-org&gt;/av-perception.git
-   cd av-perception</code></p>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/isidoraj03/av-perception.git
+<span class="nb">cd</span><span class="w"> </span>av-perception
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Install dependencies with Poetry</strong><br />
-<code>bash
-   poetry install
-   # (Optional) Spawn a shell:
-   poetry shell</code></p>
+   <div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>install
+<span class="c1"># (Optional) Spawn a shell:</span>
+poetry<span class="w"> </span>shell
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Download datasets</strong>  </p>
 </li>
-<li>See <a href="../data-setup/">Data Setup</a> for full instructions on preparing the KITTI and nuScenes datasets.  </li>
+<li>See <a href="data-setup.html">Data Setup</a> for full instructions on preparing the KITTI and nuScenes datasets.  </li>
 <li>
 <p><strong>Note:</strong> The default dataset is KITTI.</p>
 </li>
 <li>
 <p><strong>Run the live playback demo</strong><br />
-<code>bash
-   # Inside the Poetry shell
-   python scripts/main.py --duration 30 --interval 0.1
-   # Or without the shell
-   poetry run python scripts/main.py --duration 30 --interval 0.1</code>  </p>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Inside the Poetry shell</span>
+python<span class="w"> </span>scripts/main.py<span class="w"> </span>--duration<span class="w"> </span><span class="m">30</span><span class="w"> </span>--interval<span class="w"> </span><span class="m">0</span>.1
+<span class="c1"># Or without the shell</span>
+poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/main.py<span class="w"> </span>--duration<span class="w"> </span><span class="m">30</span><span class="w"> </span>--interval<span class="w"> </span><span class="m">0</span>.1
+</code></pre></div></p>
 </li>
 <li><code>--duration</code>: Total run time in seconds.  </li>
 <li><code>--interval</code>: Sleep time between frames (controls frame rate).  </li>
 <li><strong>Note:</strong> Press <strong>q</strong> in the OpenCV window to quit early.  </li>
 <li>
 <p>To switch datasets (e.g., to nuScenes):<br />
-<code>bash
-     DATASET_NAME=nuscenes poetry run python scripts/main.py</code></p>
+     <div class="highlight"><pre><span></span><code><span class="nv">DATASET_NAME</span><span class="o">=</span>nuscenes<span class="w"> </span>poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/main.py
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>(Optional) Launch the web dashboard</strong><br />
-<code>bash
-   poetry run streamlit run scripts/web_dashboard.py</code>  </p>
+   <div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>run<span class="w"> </span>streamlit<span class="w"> </span>run<span class="w"> </span>scripts/web_dashboard.py
+</code></pre></div></p>
 </li>
 <li>Open <a href="http://localhost:8501">http://localhost:8501</a> in your browser.</li>
 </ol>
@@ -773,6 +805,9 @@
 
 
 
+
+  
+  
 
 
 

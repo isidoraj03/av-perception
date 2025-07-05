@@ -6,17 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Real-time 2D/3D perception with YOLO + KITTI/nuScenes">
-      
-      
-        <meta name="author" content="Isidora Jakovlevska">
       
       
       
         <link rel="prev" href="../live-demo/">
       
       
-        <link rel="next" href="../scripts/train/">
+        <link rel="next" href="../scripts/benchmark_official/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -29,9 +25,6 @@
     
     
       <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,8 +43,6 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
-    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -62,12 +53,7 @@
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -119,8 +105,8 @@
       </div>
     </div>
     
-      
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -425,7 +411,7 @@
   
   
   <span class="md-ellipsis">
-    Scripts
+    Scripts & CLI
     
   </span>
   
@@ -436,7 +422,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Scripts
+            Scripts & CLI
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -447,12 +433,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../scripts/train/" class="md-nav__link">
+      <a href="../scripts/benchmark_official/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Train
+    Benchmark Official
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/create_kitti_full/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create KITTI Full
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/create_nuscenes_subset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create nuScenes Subset
     
   </span>
   
@@ -476,29 +508,6 @@
   
   <span class="md-ellipsis">
     Eval
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../scripts/benchmark_official/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Benchmark
     
   </span>
   
@@ -567,7 +576,7 @@
   
   
   <span class="md-ellipsis">
-    Main Playback
+    Main
     
   </span>
   
@@ -591,6 +600,29 @@
   
   <span class="md-ellipsis">
     Overlay
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/train/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Train
     
   </span>
   
@@ -653,6 +685,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../reference/data_streamer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataStreamer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../reference/detector/" class="md-nav__link">
         
   
@@ -681,7 +736,7 @@
   
   
   <span class="md-ellipsis">
-    FusionEngine
+    Fusion
     
   </span>
   
@@ -704,30 +759,7 @@
   
   
   <span class="md-ellipsis">
-    SimpleTracker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../reference/data_streamer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    DataStreamer
+    Tracker
     
   </span>
   
@@ -821,13 +853,13 @@
 <ol>
 <li>
 <p><strong>Ensure dependencies are installed</strong><br />
-<code>bash
-   poetry add streamlit matplotlib opencv-python</code></p>
+   <div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>add<span class="w"> </span>streamlit<span class="w"> </span>matplotlib<span class="w"> </span>opencv-python
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Run the app</strong><br />
-<code>bash
-   poetry run streamlit run scripts/web_dashboard.py</code></p>
+   <div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>run<span class="w"> </span>streamlit<span class="w"> </span>run<span class="w"> </span>scripts/web_dashboard.py
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Open in browser</strong>  </p>
@@ -847,7 +879,7 @@
 </ul>
 <hr />
 <h2 id="code-highlights">Code Highlights<a class="headerlink" href="#code-highlights" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># In scripts/web_dashboard.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># In scripts/web_dashboard.py</span>
 <span class="nd">@st</span><span class="o">.</span><span class="n">cache_resource</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">init_streamer</span><span class="p">(</span><span class="o">...</span><span class="p">):</span> <span class="o">...</span>
 <span class="nd">@st</span><span class="o">.</span><span class="n">cache_resource</span>
@@ -857,7 +889,6 @@
 <span class="n">m2d</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">&quot;2D Detections&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="o">...</span>
 </code></pre></div>
-
 <ul>
 <li><strong>Note:</strong> <code>@st.cache_resource</code> caches resources for performance.</li>
 </ul>
@@ -867,6 +898,9 @@
 
 
 
+
+  
+  
 
 
 
