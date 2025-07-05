@@ -1,3 +1,7 @@
+---
+title: Live Playback Demo
+---
+
 # Live Playback Demo
 
 Streams camera and LiDAR data, performs 2D detection, fuses to 3D, tracks objects, and displays results in real-time.

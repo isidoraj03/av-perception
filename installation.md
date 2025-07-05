@@ -1,3 +1,7 @@
+---
+title: Installation
+---
+
 # Installation
 
 This project requires **Python 3.11** and uses [Poetry](https://python-poetry.org/) for dependency management.
@@ -20,7 +24,7 @@ This project requires **Python 3.11** and uses [Poetry](https://python-poetry.or
 
 3. **Clone the repository and install dependencies**  
    ```bash
-   git clone https://github.com/<your-org>/av-perception.git
+   git clone https://github.com/isidoraj03/av-perception.git
    cd av-perception
    poetry install
    ```

@@ -1,3 +1,7 @@
+---
+title: Quick Start
+---
+
 # Quick Start
 
 Follow these steps to get the AV-Perception demo up and running quickly.
@@ -6,7 +10,7 @@ Follow these steps to get the AV-Perception demo up and running quickly.
 
 1. **Clone the repository**  
    ```bash
-   git clone https://github.com/<your-org>/av-perception.git
+   git clone https://github.com/isidoraj03/av-perception.git
    cd av-perception
    ```
 
@@ -18,7 +22,7 @@ Follow these steps to get the AV-Perception demo up and running quickly.
    ```
 
 3. **Download datasets**  
-   - See [Data Setup](data-setup.md) for full instructions on preparing the KITTI and nuScenes datasets.  
+   - See [Data Setup](data-setup.html) for full instructions on preparing the KITTI and nuScenes datasets.  
    - **Note:** The default dataset is KITTI.
 
 4. **Run the live playback demo**  
