@@ -1,4 +1,5 @@
 site_name: AV-Perception
+
 nav:
   - Home: index.md
   - Quick Start: quick-start.md
@@ -21,3 +22,13 @@ nav:
       - Detector: reference/detector.md
       - Fusion: reference/fusion.md
       - Tracker: reference/tracker.md
+
+theme:
+  name: material
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.details
