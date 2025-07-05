@@ -1,3 +1,7 @@
+---
+title: Data Setup
+---
+
 # Data Setup
 
 This project supports the official **nuScenes v1.0‑mini**, the 50‑frame **KITTI “mini” subset**, the entire **KITTI full training split**, and arbitrary **nuScenes subsets** generated with the helper scripts below.
@@ -37,7 +41,7 @@ This project supports the official **nuScenes v1.0‑mini**, the 50‑frame **
 
 ## KITTI Full Training Split
 
-> **New!** Use [`create_kitti_full.py`](scripts/create_kitti_full.md) to convert the **entire KITTI training split** into YOLO format.
+> **New!** Use [`create_kitti_full.py`](scripts/create_kitti_full.html) to convert the **entire KITTI training split** into YOLO format.
 
 ```bash
 poetry run python scripts/create_kitti_full.py
@@ -83,7 +87,7 @@ You can now train / evaluate with `datasets/kitti_full.yaml`.
 
 ## Custom nuScenes Subset from v1.0‑trainval
 
-If you have the full nuScenes *trainval* set and want a lightweight subset, run [`create_nuscenes_subset.py`](scripts/create_nuscenes_subset.md):
+If you have the full nuScenes *trainval* set and want a lightweight subset, run [`create_nuscenes_subset.py`](scripts/create_nuscenes_subset.html):
 
 ```bash
 # 1 500 front‑camera frames by default

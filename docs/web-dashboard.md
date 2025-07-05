@@ -1,3 +1,7 @@
+---
+title: Web Dashboard
+---
+
 # Web Dashboard
 
 A Streamlit-based dashboard for real-time perception metrics and visualization.
