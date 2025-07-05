@@ -1,116 +1,155 @@
-Here’s a cleaner, more professional version of your documentation, with improved structure, formatting, and readability:
+# AV‑Perception 
 
-AV-Perception
-=============
+![Pipeline Overview](docs/assets/pipeline_overview.png)
 
-**Real-time 2D/3D perception demo using Ultralytics YOLO and KITTI/nuScenes “mini” subsets**
+*A lightweight, script‑first perception stack for autonomous‑vehicle research.  
+YOLO‑based 2D detection ➜ LiDAR fusion ➜ simple 3D tracking ➜ Streamlit dashboard.*
 
-🚀 Quick Start
---------------
+---
 
-### 1\. Clone the Repository
+## Features
+
+| Area | What you get |
+|------|--------------|
+| **Datasets** | On‑the‑fly streaming of **KITTI** and **nuScenes** (mini & full) via `DataStreamer` |
+| **Detection** | Plug‑and‑play Ultralytics **YOLOv8 / YOLOv11** with one‑line swap |
+| **Sensor Fusion** | Late‑fusion engine that re‑scores detections with LiDAR evidence |
+| **Tracking** | Minimal SORT/ByteTrack‑compatible wrapper for 3‑D boxes |
+| **Benchmarking** | Reproducible `eval.py` + `benchmark_official.py` scripts with mAP/FPS summary |
+| **Export** | One‑command ONNX export & checker |
+| **Visualisation** | Real‑time Streamlit dashboard + OpenCV overlay |
+| **Testing** | ~20 PyTest cases for CI peace‑of‑mind |
+---
+
+## Quick start
+
+```bash
+# Clone & install (Poetry)
+git clone https://github.com/<you>/av-perception.git
+cd av-perception
+poetry install
+poetry shell  # activate venv
+```
+
+### 1. Download datasets
+
+| Dataset | Official link | What to download | Where to place |
+|---------|---------------|------------------|----------------|
+| **KITTI Object** | <https://www.cvlibs.net/datasets/kitti/> | *data_object_image_2*, *data_object_velodyne*, *data_object_label_2* (+ *data_object_calib*) | `datasets/` (so paths look like `datasets/data_object_image_2/...`) |
+| **nuScenes** | <https://www.nuscenes.org/download> | *v1.0-mini* **or** full *v1.0-trainval* ± *v1.0-test* | `datasets/` (keep the folder names created by the NuScenes script) |
+
+> **Tip** – the repo’s `datasets/config.yaml` expects the above layout **out‑of‑the‑box**.  
+> If you put the data elsewhere, just tweak the `root:` entries.
+
+### 2. (Optional) create small subsets
+
+```bash
+# 50‑image KITTI toy‑set (for CPU tests)
+python scripts/create_kitti_subset.py -n 50
+
+# Full KITTI in YOLO format (~7k imgs)
+python scripts/create_kitti_full.py
+
+# 1 500‑frame front‑camera slice from nuScenes‑full
+python scripts/create_nuscenes_subset.py -n 1500
+```
+
+These scripts populate `datasets/kitti50/`, `datasets/kitti_full/` and `datasets/nuscenes_subset/` and drop ready‑to‑use YAMLs alongside them.
+
+### 3. Train / evaluate
+
+```bash
+# a) Train (CPU example)
+python scripts/train.py \
+  --model yolov8n \
+  --data datasets/kitti50.yaml \
+  --epochs 1 --batch-size 4
+
+# b) Benchmark official YOLOs (mAP + FPS)
+python scripts/benchmark_official.py --data datasets/kitti50.yaml
+
+# c) Export to ONNX
+python scripts/export.py -w yolov8n.pt -f onnx --output-dir exports
+```
+
+### 4. Real‑time demo
+
+```bash
+# OpenCV window (10 s playback)
+python scripts/main.py
+```
+![Short screen-capture](docs/assets/sample_detection.gif)
+
+```bash
+# Or launch the Streamlit dashboard
+streamlit run scripts/web_dashboard.py
+```
+![Full-page Streamlit view](docs/assets/dashboard_screenshot.png)
 
 
-`   git clone https://github.com//av-perception.git  cd av-perception   `
+---
 
-### 2\. Install Dependencies (using Poetry)
+## Repository layout
 
-`   poetry install  # Optional: enter Poetry shell  poetry shell   `
-📦 Dataset Setup
-----------------
+```
+├── datasets/
+│   ├── config.yaml          # registry of all dataset roots
+│   ├── v1.0-mini/           # nuScenes mini (after download)
+│   ├── v1.0-full/           # nuScenes full
+│   ├── data_object_image_2/ # KITTI RGBs
+│   ├── data_object_velodyne/# KITTI point‑clouds
+│   ├── kitti50/             # ← generated subset
+│   └── …
+├── docs/
+│   └── assets/
+│       ├── pipeline_overview.png   # ← add architecture diagram
+│       ├── sample_detection.gif    # ← YOLO + fusion overlay clip
+│       └── dashboard_screenshot.png
+└── scripts/
+    ├── train.py
+    ├── eval.py
+    └── …
+```
 
-### KITTI "Mini" Subset
+Add your own screenshots or renders to **`docs/assets/`** and they will be displayed automatically by the Markdown:
 
-1.  Download the raw KITTI data (images + Velodyne):
-    
-    *   Dataset: [https://www.cvlibs.net/datasets/kitti/](https://www.cvlibs.net/datasets/kitti/)
-        
-    *   Raw data: [https://www.cvlibs.net/datasets/kitti/raw\_data.php](https://www.cvlibs.net/datasets/kitti/raw_data.php)
-        
-2.  Extract the archive anywhere (must include image\_2/ and velodyne/ folders).
-    
-3.  kitti: root: /path/to/your/KITTI
-    
-4.  poetry run python scripts/create\_kitti\_subset.py 50
-    
-5.  datasets/ └── kitti50/ ├── images/ ├── labels/ └── kitti50.yaml
-    
+* `pipeline_overview.png` – high‑level block diagram (top of README).  
+* `sample_detection.gif` – 5–10 s GIF of the OpenCV overlay (under *Demo*).  
+* `dashboard_screenshot.png` – Streamlit UI (under *Dashboard*).
 
-### nuScenes v1.0-mini
+---
 
-1.  Download the split from:
-    
-    *   Website: [https://www.nuscenes.org/download](https://www.nuscenes.org/download)
-        
-    *   wget https://www.nuscenes.org/data/v1.0-mini.tgztar xzf v1.0-mini.tgz
-        
-2.  datasets/v1.0-mini/ ├── samples/ ├── sweeps/ └── \*.json files
-    
-3.  nuscenes: root: datasets/v1.0-mini
-    
+## Dataset anatomy (TL;DR)
 
-▶️ Running the Live Demo
-------------------------
+```
+datasets/
+├── data_object_image_2/            # KITTI RGBs
+│   └── training/image_2/000000.png
+├── data_object_velodyne/
+│   └── training/velodyne/000000.bin
+├── v1.0-mini/                      # nuScenes mini as‑is
+│   ├── samples/CAM_FRONT/…
+│   └── sweeps/LIDAR_TOP/…
+└── v1.0-full/                      # full nuScenes trainval/test
+    └── …
+```
 
-From a Poetry shell:
+No extra renaming needed – just unzip into `datasets/`.
 
-`   python scripts/main.py --duration 30 --interval 0.1   `
+---
 
-Or without the shell:
+## Testing
 
-`   poetry run python scripts/main.py --duration 30 --interval 0.1   `
+```bash
+pytest -q
+```
 
-*   Press q in the OpenCV window to quit early.
-    
-*   DATASET\_NAME=kitti poetry run python scripts/main.py
-    
+All CI tests run in pure‑CPU mode and rely only on the 50‑image subset.
 
-🧪 Other Scripts
-----------------
 
-*   poetry run python scripts/train.py --data datasets/kitti50.yaml --epochs 50
-    
-*   poetry run python scripts/eval.py --weights yolov8n.pt --data datasets/kitti50.yaml --device cpu --batch-size 4 --output-dir runs/val
-    
-*   poetry run python scripts/benchmark\_official.py --data datasets/kitti50.yaml --models yolov8s yolov11s --batch-size 4
-    
-*   poetry run python scripts/export.py --weights yolov8n.pt --format onnx --dynamic --output-dir exports
-    
-*   poetry run python scripts/fusion\_offline.py --image path/to/img.png --pc path/to/pc.npy --weights yolov8n.pt --min-points 3
-    
 
-🌐 Web Dashboard
-----------------
 
-1.  poetry add streamlit matplotlib opencv-python
-    
-2.  poetry run streamlit run scripts/web\_dashboard.py
-    
-3.  Open in browser: [http://localhost:8501](http://localhost:8501)
-    
+---
 
-📚 MkDocs Documentation
------------------------
 
-1.  poetry add --dev mkdocs mkdocs-material
-    
-2.  poetry run mkdocs serve
-    
-3.  Open in browser: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-    
-
-📜 License & Citation
----------------------
-
-_(Include your preferred license and how to cite this project.)_
-
-🖼️ Recommended Screenshots for README
---------------------------------------
-
-1.  Dataset directory structure showing kitti50/ and v1.0-mini/
-    
-2.  Annotated live playback frame (bounding boxes, track IDs, FPS)
-    
-3.  Rendered Quick-Start page from the MkDocs site (with sidebar)
-    
-4.  Sample from summary.csv produced by evaluation scripts
+> Built by *Isidora Jakovlevska*

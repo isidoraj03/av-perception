@@ -63,7 +63,7 @@ det     = init_detector(DATASET_NAME)
 fus_eng = init_fusion_engine()
 tracker = init_tracker()
 
-st.title("🚀 Real-Time Perception Dashboard")
+st.title("Real-Time Perception Dashboard")
 c1, c2, c3 = st.columns(3)
 img_ph     = st.empty()
 m2d        = c1.metric("2D Detections", 0)
@@ -111,4 +111,4 @@ while time.time() - start_time < run_duration:
     time.sleep(interval_ms / 1000.0)
 
 ds.stop()
-st.write("### ▶️ Streaming finished.")
+st.write("### Streaming finished.")

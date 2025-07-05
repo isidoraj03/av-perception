@@ -18,16 +18,16 @@ HEADLESS = os.getenv("CI") is not None
 #   "nuscenes"      → v1.0-mini
 #   "nuscenes-full" → v1.0-full
 # DATASET_NAME = "nuscenes"        # mini by default
-DATASET_NAME = "nuscenes-full" # uncomment to run on full dataset
+DATASET_NAME = "nuscenes-full-rain" # uncomment to run on full dataset
 
-def main(duration_sec: float = 10.0, interval_sec: float = 0.05):
+def main(duration_sec: float = 25.0, interval_sec: float = 0.05):
     # 0) set up DataStreamer
     ds = DataStreamer(config_path="datasets/config.yaml")
     ds.load_split(DATASET_NAME, split="train", shuffle=False)
     ds.start()
 
     # 1) load detector
-    det = Detector(model_path="yolov8n.pt", device="cpu")
+    det = Detector(model_path="../runs/train_nuscenes_sub/train/weights/best.pt", device="cpu")
     det.load_model()
 
     # 2) set up fusion

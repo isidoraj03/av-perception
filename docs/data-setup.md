@@ -1,10 +1,10 @@
 # Data Setup
 
-This project supports **KITTI “mini” subset** (50 images) and **nuScenes v1.0-mini** (official mini split).
+This project supports the official **nuScenes v1.0‑mini**, the 50‑frame **KITTI “mini” subset**, the entire **KITTI full training split**, and arbitrary **nuScenes subsets** generated with the helper scripts below.
 
 ---
 
-## KITTI “mini” Subset
+## KITTI “mini” Subset *(50 frames)*
 
 1. **Download raw KITTI data**  
    - Visit [KITTI dataset page](https://www.cvlibs.net/datasets/kitti/).  
@@ -23,7 +23,7 @@ This project supports **KITTI “mini” subset** (50 images) and **nuScenes v1.
        root: /absolute/path/to/<KITTI_ROOT>
      ```
 
-3. **Generate the 50-image subset**  
+3. **Generate the 50‑image subset**  
    - Run:  
      ```bash
      poetry run python scripts/create_kitti_subset.py 50
@@ -32,11 +32,31 @@ This project supports **KITTI “mini” subset** (50 images) and **nuScenes v1.
      - `kitti50/images/`  
      - `kitti50/labels/`  
      - `kitti50.yaml`  
-   - **Note:** The script subsamples the raw KITTI data.
 
 ---
 
-## nuScenes v1.0-mini
+## KITTI Full Training Split
+
+> **New!** Use [`create_kitti_full.py`](scripts/create_kitti_full.md) to convert the **entire KITTI training split** into YOLO format.
+
+```bash
+poetry run python scripts/create_kitti_full.py
+```
+
+This writes:
+
+```
+datasets/kitti_full/
+├── images/train/
+└── labels/train/
+datasets/kitti_full.yaml
+```
+
+You can now train / evaluate with `datasets/kitti_full.yaml`.
+
+---
+
+## nuScenes v1.0‑mini
 
 1. **Download the mini split**  
    - Visit [nuScenes download page](https://www.nuscenes.org/download).  
@@ -58,3 +78,27 @@ This project supports **KITTI “mini” subset** (50 images) and **nuScenes v1.
      nuscenes:
        root: v1.0-mini
      ```
+
+---
+
+## Custom nuScenes Subset from v1.0‑trainval
+
+If you have the full nuScenes *trainval* set and want a lightweight subset, run [`create_nuscenes_subset.py`](scripts/create_nuscenes_subset.md):
+
+```bash
+# 1 500 front‑camera frames by default
+poetry run python scripts/create_nuscenes_subset.py
+# or a smaller subset
+poetry run python scripts/create_nuscenes_subset.py --num-images 500
+```
+
+This outputs:
+
+```
+datasets/nuscenes_subset/
+├── images/
+└── labels/
+datasets/nuscenes_subset.yaml
+```
+
+You can immediately train / evaluate with `datasets/nuscenes_subset.yaml`.
